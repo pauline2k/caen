@@ -16,7 +16,7 @@
   }
 
   &.is-scrolled {
-    .header__nav {
+    .header__nav--not-home {
       height: 0px;
       overflow: hidden;
       border-bottom: 0px;

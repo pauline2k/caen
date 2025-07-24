@@ -1,0 +1,9 @@
+<ul class="nav">
+    {{#foreach navigation}}
+    {{#is "home"}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}} nav-anchor-scroll"><a href="#load-more">{{label}}</a></li>
+    {{else}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+    {{/is}}
+    {{/foreach}}
+</ul>

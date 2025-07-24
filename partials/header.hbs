@@ -59,20 +59,30 @@
           {{/if}}
 
           {{!-- Menu Button --}}
+          {{^is "home"}}
           <button id="menu-open" class="header__menu--open hamburger" 
             type="button" title="{{t "Menu"}}" aria-label="{{t "Menu"}}">
             <span></span>
           </button>
+          {{/is}}
         </div>
       </div>
     </div>
   </div>
 
   {{!-- Menu --}}
+  {{#is "home"}}
+  <div class="header__bottom--home">
+  {{else}}
   <div class="header__bottom">
+  {{/is}}
     <div class="container-fluid wrapper">
       {{!-- Blog navigation --}}
+      {{#is "home"}}
       <nav class="header__nav">
+      {{else}}
+      <nav class="header__nav header__nav--not-home">
+      {{/is}}
         {{navigation}}
 
         {{!-- Secondary navigation --}}

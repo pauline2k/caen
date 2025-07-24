@@ -97,7 +97,8 @@
         "options": [
           "posts-grid-with-sidebar",
           "posts-list-with-sidebar",
-          "posts-grid"
+          "posts-grid",
+          "orb-special"
         ],
         "default": "posts-grid-with-sidebar",
         "group": "homepage"

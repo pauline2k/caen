@@ -17,6 +17,7 @@ var callback = function(){
   // const searchForm = document.querySelector('#search-form');
   // const searchField = document.querySelector('#ghost-search-field');
   // const searchByTags = document.querySelectorAll('.js-search-tag');
+  const navAnchorLinks = document.querySelectorAll('.nav-anchor-scroll a' );
   const msgBoxes = document.querySelectorAll('.js-msg-close');
   const images = document.querySelectorAll('.kg-image-card img, .kg-gallery-card img');
   const galleryImages = document.querySelectorAll('.kg-gallery-image img');
@@ -80,6 +81,16 @@ var callback = function(){
       scrollToTop();
     }
   }
+
+  navAnchorLinks.forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault()
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth',
+        duration: 400
+      })
+    })
+  })
 
   // =======================================
   // Key press event handling

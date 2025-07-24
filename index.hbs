@@ -37,6 +37,10 @@
     {{> home-posts-grid}}
   {{/match}}
 
+  {{#match @custom.homepage_layout "orb-special"}}
+    {{> home-orb-special}}
+  {{/match}}
+
   {{!-- Explore topics --}}
   {{#if @custom.homepage_topics}}
     <h5 class="section__title">{{t "Explore topics"}}</h5>
