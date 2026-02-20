@@ -1,8 +1,8 @@
 {
-  "name": "auden",
-  "description": "Auden Ghost Theme",
+  "name": "auden-orb",
+  "description": "Auden Ghost Theme modified for ORB",
   "demo": "",
-  "version": "2.15.0",
+  "version": "1.0.0",
   "engines": {
     "ghost": ">=5.0.0"
   },

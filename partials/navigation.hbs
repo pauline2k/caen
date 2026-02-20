@@ -1,9 +1,26 @@
 <ul class="nav">
     {{#foreach navigation}}
     {{#is "home"}}
-    <li class="{{link_class for=(url) class=(concat "nav-" slug)}} nav-anchor-scroll"><a href="#load-more">{{label}}</a></li>
+    {{#has slug="about"}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+    {{else}}
+    {{#has slug="pitch-us"}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+    {{else}}
+    {{#has slug="syllabus"}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
+    {{else}}
+    <li class="{{link_class for=(url) class=(concat "nav-" slug)}} nav-anchor-scroll"><a href="#{{slug}}">{{label}}</a></li>
+    {{/has}}
+    {{/has}}
+    {{/has}}
     {{else}}
     <li class="{{link_class for=(url) class=(concat "nav-" slug)}}"><a href="{{url absolute="true"}}">{{label}}</a></li>
     {{/is}}
     {{/foreach}}
+    {{#if @member}}
+      <li><a class="signup-link signup-link-xs header-cta" href="/account/"{{#if @custom.use_portal_links}} data-portal="account"{{/if}}>{{t "Account"}}</a></li>
+    {{else}}
+      <li><a class="signup-link signup-link-xs header-cta" href="/signup/"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}}>{{t "Subscribe"}}</a></li>
+    {{/if}}
 </ul>

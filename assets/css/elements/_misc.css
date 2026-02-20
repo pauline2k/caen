@@ -2,7 +2,7 @@
 hr {
   border: 0;
   height: 1px;
-  background-color: var(--color-bg-accent-2);
+  background-color: var(--color-grey-lighter);
   margin: var(--gap) 0;
 }
 

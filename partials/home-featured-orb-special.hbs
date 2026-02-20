@@ -1,0 +1,46 @@
+<div class="center-screen-wrapper">
+  <div class="center-screen center-screen-collage">
+    <a id="featured" name="featured"></a>
+    <section class="section section-featured latest-post">
+      <a href="/calendar" title="Calendar">
+        <div class="home-calendar">
+          <img class="calendar-orb" src="assets/images/orb.png" width="200" height="200">
+          <div>
+            <div
+                class="calendar-title"
+                data-text="Calendar of Events"
+             >
+             Calendar of Events
+            </div>
+            <div
+              class="calendar-subtitle"
+              data-text="Gaze into the week ahead"
+            >
+              Gaze into the week ahead
+            </div>
+          </div>
+        </div>
+      </a>
+      {{#get "posts" filter="featured:true+tag:-calendar" include="authors" limit="all"}}
+        {{#foreach posts}}
+         <div class="article" id="{{id}}">
+           <a href="{{url}}" title="{{title}}">
+             <div class="article-title" data-text="{{title}}">{{title}}</div>
+             {{#has author='\O/,Oakland Review of Books'}}
+              {{#if meta_description}}
+                <div class="article-author" data-text="{{meta_description}}">{{meta_description}}</div>
+              {{else}}
+              {{#if excerpt}}
+                <div class="article-author" data-text="{{excerpt}}">{{excerpt}}</div>
+              {{/if}}
+              {{/if}}
+             {{else}}
+               <div class="article-author" data-text="by {{primary_author.name}}">by {{primary_author.name}}</div>
+             {{/has}}
+           </a>
+         </div>
+        {{/foreach}}
+      {{/get}}
+    </section>
+  </div>
+</div>

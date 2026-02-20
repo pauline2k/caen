@@ -1,10 +1,9 @@
 {{#if @site.members_enabled}}
   <div class="subscribe">
-    <h5 class="subscribe__title">{{t "Subscribe"}}</h5>
-    {{> wave}}
+    <h5 class="subscribe__title" style="margin-bottom: 20px;">{{t "Subscribe"}}</h5>
 
     <div class="subscribe__content">
-      <div class="subscribe__descr" id="post-subscribe">{{t "Join the newsletter to get the latest updates."}}</div>
+      <div class="subscribe__descr" id="post-subscribe">{{t "Get the latest ORB in newsletter modality!"}}</div>
       <form data-members-form="subscribe">
         <input data-members-email aria-labelledby="post-subscribe" type="email" placeholder="{{t "Your email address"}}" required/>
         <button class="btn--brand" type="submit" title="{{t "Subscribe"}}" aria-label="{{t "Subscribe"}}">{{>icon name="send"}}</button>

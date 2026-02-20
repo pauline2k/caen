@@ -1,7 +1,7 @@
 /* Subscribe */
 .subscribe {
   padding: var(--gap-lg);
-  background-color: var(--color-secondary);
+  background-color: var(--color-bg-accent-2);
   border-radius: var(--global-radius);
 
   @media (--viewport-md) {
@@ -25,7 +25,7 @@
     input {
       margin: 0;
       border-radius: 0;
-      background-color: var(--color-bg-accent-2);
+      background-color: var(--color-light);
       border-top-left-radius: var(--global-radius);    
       border-bottom-left-radius: var(--global-radius);
       color: var(--color-text-accent-1);

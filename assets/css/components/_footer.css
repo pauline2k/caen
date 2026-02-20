@@ -1,10 +1,13 @@
 /* Footer */
 .footer {
-  color: var(--color-text-accent-2);
 
   &__top {
     padding-top: var(--gap);
-    border-top: 1px solid var(--color-border);
+    padding-bottom: var(--gap);
+    padding-left: 125px;
+    padding-right: 125px;
+    color: #fff;
+    background-color: #222;
   }
 
   h5 { 
@@ -28,6 +31,7 @@
       display: block; 
       padding-bottom: var(--gap-sm);
       padding-right: var(--gap);
+      color: #ccc;
     }
   }
 
@@ -36,7 +40,8 @@
     flex-wrap: wrap;
     flex-direction: column;
     margin-bottom: var(--gap);
-    color: var(--color-text-accent-3);
+    color: #ccc;
+
 
     &__item {
       display: flex;
@@ -50,7 +55,7 @@
   }
 
   #footer-subscribe {
-    color: var(--color-text-accent-3);
+    color: #ccc;
   }
 
   .subscribe-form {

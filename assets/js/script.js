@@ -18,6 +18,7 @@ var callback = function(){
   // const searchField = document.querySelector('#ghost-search-field');
   // const searchByTags = document.querySelectorAll('.js-search-tag');
   const navAnchorLinks = document.querySelectorAll('.nav-anchor-scroll a' );
+  const homepageFeaturedArticles = document.querySelectorAll('div.article' );
   const msgBoxes = document.querySelectorAll('.js-msg-close');
   const images = document.querySelectorAll('.kg-image-card img, .kg-gallery-card img');
   const galleryImages = document.querySelectorAll('.kg-gallery-image img');
@@ -66,8 +67,15 @@ var callback = function(){
 
     if (config.enable_scroll_top) {
       // Scroll Top function
-      window.scrollY > 200 ? addClass('.scroll-to-top', 'is-active') 
+      if (window.location.pathname === '/') {
+        const elems = document.getElementsByClassName('nav-current')
+        if (elems) {
+          Array.from(elems).forEach(e => e.classList.remove('nav-current'))
+        }
+      } else {
+        window.scrollY > 200 ? addClass('.scroll-to-top', 'is-active') 
                            : removeClass('.scroll-to-top', 'is-active');
+      }
     }
     
   }, false);
@@ -82,13 +90,48 @@ var callback = function(){
     }
   }
 
+  // =======================================
+  // Homepage feature title skew
+  // =======================================
+  homepageFeaturedArticles.forEach(feature => {
+    feature.classList.add("article-" + feature.id)
+    const intId = parseInt(feature.id.substring(feature.id.length - 7), 16)
+    const angle = (intId % 19) - 9
+    const marginTop = 15 + (intId % 7) * 8
+    const marginLeft = 10 + intId % 13
+    const marginBottom = 70 + (intId % 9) * 15
+    const marginBottomXs = 40 + (intId % 9) * 5
+
+    const styleElement = document.createElement('style');
+    styleElement.innerText = (
+      ".article-" + feature.id + " {" +
+      "margin-left:" + marginLeft + "px;" +
+      "margin-bottom: " + marginBottom + "px;" +
+      "margin-top: " + marginTop + "px;" + 
+      "transform: rotate(" + angle + "deg); " +
+      "@media only screen and (max-width: 575px) { margin-bottom: " + marginBottomXs + "px;}" +
+      "}"
+    );
+    document.getElementsByTagName('head')[0].appendChild(styleElement);
+  })
+
+  // =======================================
+  // Homepage section scrolling
+  // =======================================
   navAnchorLinks.forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault()
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
+      console.log(anchor)
+      console.log(anchor.parentElement)
+      const element = document.querySelector(this.getAttribute('href'))
+      const y = element.getBoundingClientRect().top + window.scrollY - 100
+      window.scrollTo({
+        top: y,
         behavior: 'smooth',
         duration: 400
       })
+      anchor.parentElement.classList.add('nav-current')
+      console.log(anchor.parentElement)
     })
   })
 

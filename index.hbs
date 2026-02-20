@@ -2,6 +2,7 @@
 
 <div class="container-fluid wrapper">
   {{!-- Top post latest/featured --}}
+  {{^match @custom.homepage_layout "orb-special"}}
   <section class="section latest-post">
     {{#if @custom.homepage_featured_on_top}}
       {{#get "posts" include="authors,tags" filter="featured:true" limit="1"}}
@@ -23,6 +24,11 @@
       {{/foreach}}
     {{/if}}
   </section>
+  {{/match}}
+
+  {{#match @custom.homepage_layout "orb-special"}}
+    {{> home-featured-orb-special}}
+  {{/match}}
 
   {{!-- Post feed layout --}}
   {{#match @custom.homepage_layout "posts-grid-with-sidebar"}}
@@ -38,7 +44,7 @@
   {{/match}}
 
   {{#match @custom.homepage_layout "orb-special"}}
-    {{> home-orb-special}}
+    {{> home-posts-orb-special}}
   {{/match}}
 
   {{!-- Explore topics --}}

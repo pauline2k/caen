@@ -54,6 +54,7 @@
 
     .post-card__content {
       padding-top: 0;
+      padding: var(--gap);
 
       @media (--viewport-md) {
         padding: var(--gap-lg);

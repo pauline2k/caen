@@ -11,7 +11,7 @@
   margin-left: auto;
 }
 
-.container-fluid {
+.container-fluid {      
   padding-right: var(--outer-margin);
   padding-left: var(--outer-margin);
 }

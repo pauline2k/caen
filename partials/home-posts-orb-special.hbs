@@ -1,0 +1,89 @@
+  <div class="center-screen-wrapper">
+    <div class="center-screen" style="padding-top: 50px;">
+    <hr/>
+    <a id="vibe-reports" name="vibe-reports"></a>
+    <h2 style="color:black;">Vibe reports</h2>
+    <section class="section all-posts">
+      <div class="row posts">
+        {{#get "posts" include="authors,tags" filter="tag:vibe-reports+featured:false" limit="5"}}
+          {{#foreach posts}}
+            <div class="col-xs-12">
+              {{> vibe-card}}
+            </div>
+          {{/foreach}}
+        {{/get}}
+      </div>
+      <div class="row">
+        <div class="col-xs-12 center-xs" style="padding-top: 25px;">
+          <a href="/tag/vibe-reports/">More vibes <img src="https://www.oaklandreviewofbooks.org/assets/images/hand-icon-right.png" style="margin:0;position:relative;top:3px;"></a>
+        </div>
+      </div>
+    </section>
+    <hr/>
+    <h2 style="color:black;">Oakland Quote Generator</h2>
+    <section class="section all-posts">
+      <div class="row">
+        <div class="col-xs-12">
+          <iframe id="booksFrame" src="https://oaklandinbooks.araxne.com/" style="width:80%;height:320px;border:none;"></iframe>
+        </div>
+      </div>
+    </section>
+    <hr/>
+    <a id="reviews" name="reviews"></a>
+    <h2 style="color:black;">Reviews</h2>
+    <section class="section all-posts">
+      <div class="row">
+        <div class="col-xs-12">
+          {{#get "posts" include="authors,tags" filter="tag:reviews+featured:false" limit="all"}}
+            <div class="row posts">
+              {{#foreach posts}}
+                <div class="col-xs-12 col-md-6 col-lg-4 post-wrap">
+                  {{> post-card class="col"}}
+                </div>
+              {{/foreach}}
+            </div>
+          {{/get}}
+        </div>
+      </div>
+    </section>
+    <hr/>
+    <a id="syllabus" name="syllabus"></a>
+    <h2 style="color:black;">Oakland Syllabus</h2>
+    <div class="row">
+      <a class="home-syllabus-link" href="https://www.oaklandreviewofbooks.org/introducing-the-oakland-review-of-books-syllabus/">
+        <img src="/assets/images/syllabus.jpg"></img>
+      </a>
+    </div>
+    <hr/>    
+    <a id="about" name="about"></a>
+    <h2 style="color:black;">ab\O/ut</h2>
+    <div class="row">
+      <div class="col-xs-12">
+        {{#get "pages" include="authors,tags" filter="tag:about" limit="all"}}
+          <div class="row posts">
+            {{#foreach pages}}
+              <div class="col-xs-12" style="padding:30px;color:black;">
+                {{ excerpt characters="403"}} &hellip; <a href="/about/"><img src="https://www.oaklandreviewofbooks.org/assets/images/hand-icon-right.png" style="margin:0;position:relative;top:3px;"></a>
+              </div>
+            {{/foreach}}
+          </div>
+        {{/get}}
+      </div>
+    </div>
+    <a id="pitch-us" name="pitch-us"></a>
+    <h2 style="color:black;">Pitch Us!</h2>
+    <div class="row">
+      <div class="col-xs-12">
+        {{#get "pages" include="authors,tags" filter="tag:pitch-us" limit="all"}}
+          <div class="row posts">
+            {{#foreach pages}}
+              <div class="col-xs-12" style="padding:0 30px 40px 30px;color:black;vertical-align:bottom;">
+                {{ excerpt characters="403"}} &hellip; <a href="/pitch-us/"><img src="https://www.oaklandreviewofbooks.org/assets/images/hand-icon-right.png" style="margin:0;position:relative;top:3px;"></a>
+              </div>
+            {{/foreach}}
+          </div>
+        {{/get}}
+      </div>
+    </div>
+  </div>
+</div>
