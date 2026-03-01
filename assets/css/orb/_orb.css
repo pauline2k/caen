@@ -1,3 +1,7 @@
+:root {
+  --tile: 300px;
+}
+
 .center-screen-wrapper {
   display: flex;
   justify-content: center;
@@ -16,9 +20,26 @@
   background-color: #fff;
 }
 .section-featured {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+
+  /* auto-fill makes it responsive */
+  grid-template-columns: repeat(auto-fill, minmax(var(--tile), 1fr));
+
+  /* base row height */
+  grid-auto-rows: var(--tile);
+
+  gap: var(--gap);
+
+  /* choose alignment: start | center | end | space-between */
+  justify-content: start;
+
+  /* optional: pack items to reduce holes when spanning */
+  grid-auto-flow: row dense;
+
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
 }
 
 .home-calendar {
@@ -31,77 +52,45 @@
 }
 
 .article {
-  -webkit-text-fill-color: black;
-  paint-order: stroke fill;
-  font-family: var(--gh-font-heading, serif);
-  font-weight: 700;
-  width: 400px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-weight: 650;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("../../assets/images/tile-1.svg");
+}
+
+.article-inner {
+  padding: 30px;
+  width: 350px;
+}
+
+.article-wide { 
+  grid-column: span 2;
+  background-image: url("../../assets/images/wide-1.svg");
+}
+.article-tall {
+  grid-row: span 2;
+  background-image: url("../../assets/images/tile-2.svg");
 }
 
 .article-title {
-  font-size: 18px;
-  line-height: 26px;
-  z-index: 2;
-  position: relative;
-
-  &:before {
-    content: attr(data-text);
-    position: absolute;
-    -webkit-text-stroke-width: 20px;
-    -webkit-text-stroke-color: #eee;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
-    font-size: 1em;
-  }
-
-  @media (--viewport-sm) {
-    font-size: 24px;
-    line-height: 36px;
-
-    &:before {
-      -webkit-text-stroke-width: 28px;
-    }
-
-  }
-
+  font-size: 30px;
+  line-height: 1.2em;
+  font-family: "Libre Franklin", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
 
 .article-author
  {
-  font-size: 14px;
-  line-height: 20px;
-  z-index: 2;
-  position: relative;
-  margin-top: 20px;
-  margin-left: 50px;
-
-  &:before {
-    content: attr(data-text);
-    position: absolute;
-    -webkit-text-stroke-width: 18px;
-    -webkit-text-stroke-color: #eee;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 0;
-    font-size: 1em;
-    fill: black;
-    paint-order: markers stroke fill;
-  }
-
-    @media (--viewport-sm) {
-    font-size: 16px;
-    line-height: 24px;
-
-    &:before {
-      -webkit-text-stroke-width: 24px;
-    }
-
-  }
+  font-size: 24px;
+  font-family: "Sorts Mill Goudy", serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .calendar-orb {

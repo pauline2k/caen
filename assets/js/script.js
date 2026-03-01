@@ -91,31 +91,6 @@ var callback = function(){
   }
 
   // =======================================
-  // Homepage feature title skew
-  // =======================================
-  homepageFeaturedArticles.forEach(feature => {
-    feature.classList.add("article-" + feature.id)
-    const intId = parseInt(feature.id.substring(feature.id.length - 7), 16)
-    const angle = (intId % 19) - 9
-    const marginTop = 15 + (intId % 7) * 8
-    const marginLeft = 10 + intId % 13
-    const marginBottom = 70 + (intId % 9) * 15
-    const marginBottomXs = 40 + (intId % 9) * 5
-
-    const styleElement = document.createElement('style');
-    styleElement.innerText = (
-      ".article-" + feature.id + " {" +
-      "margin-left:" + marginLeft + "px;" +
-      "margin-bottom: " + marginBottom + "px;" +
-      "margin-top: " + marginTop + "px;" + 
-      "transform: rotate(" + angle + "deg); " +
-      "@media only screen and (max-width: 575px) { margin-bottom: " + marginBottomXs + "px;}" +
-      "}"
-    );
-    document.getElementsByTagName('head')[0].appendChild(styleElement);
-  })
-
-  // =======================================
   // Homepage section scrolling
   // =======================================
   navAnchorLinks.forEach(anchor => {
