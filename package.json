@@ -1,6 +1,6 @@
 {
-  "name": "auden-orb",
-  "description": "Auden Ghost Theme modified for ORB",
+  "name": "isherwood",
+  "description": "Isherwood Theme for ORB",
   "demo": "",
   "version": "1.0.0",
   "engines": {
@@ -87,27 +87,6 @@
         "type": "boolean",
         "default": true
       },
-      "homepage_featured_on_top": {
-        "type": "boolean",
-        "default": true,
-        "group": "homepage"
-      },
-      "homepage_layout": {
-        "type": "select",
-        "options": [
-          "posts-grid-with-sidebar",
-          "posts-list-with-sidebar",
-          "posts-grid",
-          "orb-special"
-        ],
-        "default": "posts-grid-with-sidebar",
-        "group": "homepage"
-      },
-      "homepage_topics": {
-        "type": "boolean",
-        "default": true,
-        "group": "homepage"
-      },
       "sidebar_banner": {
         "type": "image",
         "group": "homepage"
@@ -134,7 +113,7 @@
       }
     },
     "card_assets": true,
-    "posts_per_page": 10,
+    "posts_per_page": 25,
     "image_sizes": {
       "xxs": {
         "width": 30

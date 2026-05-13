@@ -2,45 +2,45 @@
 
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
-<div class="container-fluid wrapper">
+<div class="container-fluid wrapper color-background">
   <div class="row">
-    <div class="col-xs-12">
-      <div class="post-header">
-        <h1 class="post-hero__title">{{title}}</h1>
-
-        {{#if meta_description}}
-        <div class="post-hero__excerpt">
-          {{meta_description}}
-        </div>
-        {{else}}
-        {{#has tag='vibe reports,calendar'}}
-        {{#if excerpt}}
-        <div class="post-hero__excerpt">
-          {{excerpt}}
-        </div>
-        {{/if}}
-        {{/has}}
-        {{/if}}
-
-        {{^has author='\O/'}}
-        <div class="post-hero__author-names">
-          {{#authors separator=", "}}{{/authors}}
-        </div>
-        {{/has}}
-
-      </div>
-      {{> post-hero}}
-    </div>
-    <div class="col-xs-12 col-lg-12 col-xl-12">
-      <div class="post-metadata">
-        <time datetime="{{date format='YYYY-MM-DD'}}">
-          {{date published_at timeago=""}}
-        </time>
-        &bull;
-        {{tags separator=", "}}
-      </div>
+    <div class="col-xs-12 col-lg-12 col-xl-12 post__outer">
       <article class="{{post_class}} post-access-{{visibility}}">
         <div class="post__content no-overflow">
+          <div class="post-header">
+            <h1 class="post-hero__title">{{title}}</h1>
+
+            {{#if meta_description}}
+            <div class="post-hero__excerpt">
+              {{meta_description}}
+            </div>
+            {{else}}
+            {{#has tag='vibe reports,calendar'}}
+            {{#if excerpt}}
+            <div class="post-hero__excerpt">
+              {{excerpt}}
+            </div>
+            {{/if}}
+            {{/has}}
+            {{/if}}
+
+            {{^has author='\O/'}}
+            <div class="post-hero__author-names">
+              {{#authors separator=", "}}{{/authors}}
+            </div>
+            {{/has}}
+
+          </div>
+
+          {{> post-hero}}
+
+          <div class="post-metadata">
+            <time datetime="{{date format='YYYY-MM-DD'}}">
+              {{date published_at timeago=""}}
+            </time>
+            &bull;
+            {{tags separator=", "}}
+          </div>
           {{#if access}}
             {{content}}
           {{else}}

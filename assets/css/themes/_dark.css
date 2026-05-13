@@ -1,5 +1,7 @@
 /* Dark theme */
 [data-color-scheme="dark"] {
+  --accent-dusky: color-mix(in srgb, var(--accent) 30%, #111);
+
   --color-text: var(--color-light);
   --color-text-accent-1: var(--color-light-accent);
   --color-text-accent-2: var(--color-grey-lighter);

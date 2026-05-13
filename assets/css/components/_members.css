@@ -8,7 +8,11 @@
   &-title {
     color: var(--color-text);
     font-weight: var(--font-weight-extra-bold);
-    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      color-mix(in srgb, var(--color-primary) 60%, black)
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center

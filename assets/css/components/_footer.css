@@ -4,10 +4,10 @@
   &__top {
     padding-top: var(--gap);
     padding-bottom: var(--gap);
-    padding-left: 125px;
-    padding-right: 125px;
+    padding-left: 25px;
+    padding-right: 25px;
     color: #fff;
-    background-color: #222;
+    background-color: var(--color-dark);
   }
 
   h5 { 

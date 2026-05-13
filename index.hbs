@@ -1,66 +1,528 @@
 {{!< default}}
 
-<div class="container-fluid wrapper">
-  {{!-- Top post latest/featured --}}
-  {{^match @custom.homepage_layout "orb-special"}}
-  <section class="section latest-post">
-    {{#if @custom.homepage_featured_on_top}}
-      {{#get "posts" include="authors,tags" filter="featured:true" limit="1"}}
-        {{#foreach posts to="1"}}
-          <div class="row">
-            <div class="col-xs {{#unless feature_image}}m-t-lg m-b-lg{{/unless}}">
-              {{> post-card class="post-card--special" lazy=false }}
+<div class="index-page">
+  <div class="index-page-featured">
+    {{> home-featured-orb-special}}
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar__inner">
+      <section>
+        {{#get "posts" filter="tag:calendar" limit="1"}}
+          {{#foreach posts}}
+            <a href="{{url}}" data-title="{{title}}">
+              <h2 class="sidebar-calendar-header">
+                Events Calendar
+              </h2>
+              <div class="sidebar-calendar-label" data-title="{{title}}"></div>
+                <div class="index-calendar-image" style="background-image: url({{feature_image}});">
+                  <div class="index-calendar-image-inner">
+                    \O/
+                  </div>
+                </div>
+              <div class="sidebar-calendar-excerpt">{{excerpt}}</div>
+            </a>
+          {{/foreach}}
+        {{/get}}
+      </section>
+
+      <section>
+        <div class="sidebar-link">
+          <a href="/about">About</a>
+        </div>
+        <div class="sidebar-link">
+          <a data-ghost-search href="">Search</a>
+        </div>
+        <div class="sidebar-link">
+          <a href="/pitch-us">Pitch Us!</a>
+        </div>
+      </section>
+
+      {{#if @site.members_enabled}}
+        <form class="subscribe-form" data-members-form="subscribe">
+          <input aria-labelledby="footer-subscribe" data-members-email type="email" placeholder="email@email.com" required/>
+          <button type="submit" class="sidebar-link sidebar-link-subscribe">
+            Subscribe!
+          </button>
+          <div class="message message-success">
+            <div class="message__header">
+              <div class="message__type">{{t "Success"}}</div> 
+              <div class="message__close js-msg-close">{{>icon name="x" size="xs"}}</div>
+            </div>
+            <div class="message__content">
+              {{t "Great! Check your inbox and click the link to confirm your subscription"}}
             </div>
           </div>
-        {{/foreach}}
-      {{/get}}
-    {{else}}
-      {{#foreach posts to="1"}}
-        <div class="row">
-          <div class="col-xs {{#unless feature_image}}m-t-lg m-b-lg{{/unless}}">
-            {{> post-card class="post-card--special" lazy=false }}
-          </div>
-        </div>
-      {{/foreach}}
-    {{/if}}
+          <p data-members-error><!-- error message will appear here --></p>
+        </form>
+      {{/if}}
+    </div>
+  </aside>
+
+  <section class="mobile-bar">
+    <!-- narrow-screen replacement row -->
   </section>
-  {{/match}}
 
-  {{#match @custom.homepage_layout "orb-special"}}
-    {{> home-featured-orb-special}}
-  {{/match}}
+  {{> home-posts-orb-special}}
 
-  {{!-- Post feed layout --}}
-  {{#match @custom.homepage_layout "posts-grid-with-sidebar"}}
-    {{> home-posts-grid-sidebar}}
-  {{/match}}
+  <section class="index-page-syllabus">
+    <a href="/introducing-the-oakland-review-of-books-syllabus/">
+      <h2 class="index-page-syllabus-hed">
+        Oakland Syllabus
+      </h2>
+      <div class="index-page-syllabus-dek">
+        Most of us at ORB have this question in common: how do you really know this place? Can you? Enter: the Oakland Review of Books syllabus.
+      </div>
+    </a>
+  </section>
 
-  {{#match @custom.homepage_layout "posts-list-with-sidebar"}}
-    {{> home-posts-list-sidebar}}
-  {{/match}}
+  <section class="index-page-footer">
+    {{> footer}}
+  </section>
 
-  {{#match @custom.homepage_layout "posts-grid"}}
-    {{> home-posts-grid}}
-  {{/match}}
+  <script>
+    document.querySelectorAll('.sidebar-calendar-label').forEach(el => {
+      const full = el.dataset.title;
+      const parts = full.split(',');
+      el.textContent = parts.length > 1 ? parts.slice(1).join(',').trim() : full;
+    });
+  </script>
 
-  {{#match @custom.homepage_layout "orb-special"}}
-    {{> home-posts-orb-special}}
-  {{/match}}
+  <style>
+    :root{
+      --bg: #f3e5e1;
+      --ink: #141414;
+      --muted: rgba(20,20,20,.7);
+      --paper: #fff;
+      --tint: color-mix(in srgb, var(--accent) 8%, black);
+      --sidebar: #d35631;
+      --radius: 999px;
+      --shadow: 0 10px 25px rgba(0,0,0,.12);
+      --sidebar-expanded: 200px;
+      --medium-breakpoint: 700px;
+      --small-breakpoint: 600px;
+    }
 
-  {{!-- Explore topics --}}
-  {{#if @custom.homepage_topics}}
-    <h5 class="section__title">{{t "Explore topics"}}</h5>
-    {{> wave}}
-    <section class="section top-tags">
-      {{#get "tags" limit="4" filter="visibility:public" include="count.posts" order="count.posts desc"}}
-        <div class="row">
-        {{#foreach tags}}
-          <div class="col-xs-12 col-sm-6 col-lg-3">
-            {{> tag-card}}
-          </div>
-        {{/foreach}}
-        </div>
-      {{/get}}
-    </section>
-  {{/if}}
+    .index-calendar-image {
+      width: 140px;
+      height: 140px;
+      background-size: cover;
+      border: 1px solid white;
+      border-radius: 100%;
+      margin: 0 auto;
+    }
+
+    .index-calendar-image-inner {
+      width: 60px;
+      height: 60px;
+      line-height: 60px;
+      background: white;
+      border-radius: 100%;
+      margin: 0 auto;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 22px;
+      position: relative;
+      top: 10px;
+    }
+
+    .index-page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "featured sidebar"
+        "posts     sidebar"
+        "syllabus     sidebar"
+        "footer    sidebar";
+      gap: var(--layout-gap);
+      align-items: start;
+    }
+
+    .index-page-featured {
+      grid-area: featured;
+      min-width: 0;
+      width: calc(100vw - 200px);
+    }
+
+    .index-page-syllabus {
+      grid-area: syllabus;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .index-page-syllabus::before {
+      content: "";
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      background-image: url('./assets/images/syllabus.jpg');
+      background-size: cover;
+      background-position: 50% 75%;
+      filter: grayscale(100%);
+      z-index: -2;
+    }
+
+    .index-page-syllabus::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+      background: color-mix(in srgb, var(--accent) 80%, white);
+      mix-blend-mode: screen;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .index-page-syllabus-hed {
+      color: black;
+      text-align: center;
+      font-size: 34px;
+      font-weight: 800;
+      margin-top: 80px;
+      text-transform: uppercase;
+      font-family: "Libre Franklin", sans-serif;
+    }
+
+    .index-page-syllabus-dek {
+      color: black;
+      text-align: center;
+      font-size: 20px;
+      font-style: italic;
+      font-family: "Sorts Mill Goudy", serif;
+      margin: 0 20%;
+      background: color-mix(in srgb, white 90%, var(--accent));
+      padding: 0 15px;
+    }
+
+    .home-posts {
+      grid-area: posts;
+    }
+
+    .index-page .hero {
+      height: 100%;
+      background: url({{@site.cover_image}});
+      background-size: cover;
+      background-position: 55% 45%;
+    }
+
+    .index-page .hero-top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .index-page .hero-top-pill-stack {
+      margin: 20px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .index-page .calendar-link-sm {
+      display: none;
+    }
+
+    /* ORB masthead */
+    .index-page .masthead{
+      margin-top: clamp(18px, 2vw, 28px);
+      margin-left: clamp(18px, 2vw, 32px);
+      display:flex;
+      align-items:flex-start;
+      gap: 18px;
+      z-index: 3;
+      pointer-events:none;
+    }
+    .index-page .orb{
+      position: relative;
+      font-weight: 800;
+      font-family: "Libre Franklin", sans-serif;
+      letter-spacing: -0.1em;
+      font-size: clamp(84px, 11vw, 160px);
+      line-height: .9;
+      color: #000;
+      text-transform: uppercase;
+      text-shadow:
+        0 0 6px rgba(0,0,0,.35),
+        0 0 15px rgba(0,0,0,.18);
+      z-index: 0;
+    }
+
+    /* blurry elliptical glow behind ORB */
+    .index-page .orb::before{
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      height: 70%;
+      transform: translate(-50%, -50%);
+      border-radius: 999px;
+
+      background: radial-gradient(
+        ellipse at center,
+        var(--accent) 0%,
+        color-mix(in srgb, var(--accent) 85%, transparent) 30%,
+        color-mix(in srgb, var(--accent) 30%, transparent) 70%
+      );
+
+      filter: blur(18px);
+      z-index: -1;        /* behind the text */
+      pointer-events: none;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      grid-area: sidebar;
+      background-color: var(--accent-dim);
+      color: #fff;
+      padding-top 16px;
+      display:flex;
+      flex-direction:column;
+      height: 100vh;
+      position: sticky;
+      gap: 16px;
+      top: 0;
+      width: var(--sidebar-expanded);
+      align-self: start;
+      overflow-y: auto
+    }
+
+    .mobile-row {
+      display: none;
+    }
+
+.index-page .subscribe-form input {
+  border-color: white !important;
+  font-size: 1rem;
+}
+
+.index-page .subscribe-form input::placeholder {
+  color: white;
+}
+
+.sidebar__inner{
+  padding: 16px;
+  font-family: "Libre Franklin", sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.sidebar-calendar-header {
+  text-transform: uppercase;
+  font-size: 22px;
+  line-height: 1.2em;
+  margin: 0;
+}
+
+.sidebar-calendar-excerpt {
+  font-size: 14px;
+  line-height: 1.2em;
+  margin: 10px 0;
+}
+
+.sidebar-calendar-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.sidebar-fineprint {
+  font-size: 14px;  
+}
+
+.sidebar-fineprint a {
+  text-decoration: underline;
+}
+
+.sidebar-label {
+  font-size: 16px;
+  font-weight: 600;
+  transform: translateY(-10px);
+  color: black;
+}
+
+.sidebar-link {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding: 2px 10px;
+  border-radius: 20px;
+  color: white;
+  line-height: 1.4em;
+  background-color: var(--accent-dim);
+  border: 1px solid white;
+  text-align: center;
+  text-transform: none;
+  width: 100%;
+}
+
+.sidebar-link-subscribe {
+  background-color: white;
+  color: var(--accent-dim);
+}
+
+.sidebar-link:hover {
+  background-color: white;
+  color: var(--accent-dim);
+}
+
+/* Narrower than medium: stack */
+@media (max-width: 899px) {
+
+    .index-page {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "featured"
+        "posts"
+        "syllabus"
+        "footer";
+      gap: var(--layout-gap);
+      align-items: start;
+    }
+
+  .hero,
+  .index-page-featured,
+  .home-posts,
+  .index-page-syllabus,
+  .index-page-footer
+   {
+    width: 100%;
+  }
+
+  .index-page .masthead, .sidebar {
+    display: none;
+  }
+
+  .index-page .calendar-link-sm {
+    display: flex;
+    width: 140px;
+    height: 140px;
+    margin: 15px;
+    padding-top: 20px;
+    background-color: var(--accent-dim);
+    background-size: cover;
+    border: 1px solid white;
+    border-radius: 100%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .index-page .calendar-link-sm:hover {
+    background-color: var(--accent);
+  }
+}
+    .top-actions{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 12px;
+    }
+
+    .calendar {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .calendar:hover {
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,.9));
+    }
+
+    .past{
+      padding: 10px 0 0;
+    }
+    .past h3{
+      margin: 0 0 10px 0;
+      font-weight: 900;
+      letter-spacing: .02em;
+      font-size: 14px;
+    }
+    .past ul{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .past li{
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+      font-size: 13px;
+      line-height: 1.25;
+      color: rgba(255,255,255,.92);
+    }
+    .past em{ color: rgba(255,255,255,.88); }
+
+    /* Responsive: collapse sidebar under hero */
+    @media (max-width: 980px){
+      .page{ grid-template-columns: 1fr; }
+      .sidebar{ order: 2; }
+      .hero{ min-height: 78vh; }
+      .c2{ left: 58%; width: min(320px, 38%); }
+      .c4{ left: 26%; width: min(690px, 70%); }
+      .c5{ left: 22%; width: min(680px, 72%); }
+    }
+
+    @media (max-width: 640px){
+      .hero{ min-height: 92vh; background-position: 60% 45%; }
+      /* stack cutouts more vertically for small screens */
+      .c1{ top: 16%; left: 4%; width: 92%; }
+      .c2{ top: 34%; left: 8%; width: 84%; }
+      .c3{ top: 52%; left: 4%; width: 92%; }
+      .c4{ top: 66%; left: 4%; width: 92%; }
+      .c5{ top: 82%; left: 4%; width: 92%; }
+    }
+  .orb-table {
+    padding: 16px 20px;
+    color: var(--color-text);
+  }
+
+  /* Pills */
+  .orb-pills {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+    margin-bottom: 14px;
+  }
+  .pill-lower {
+    height:32px;
+    padding:0 14px;
+    border-radius:999px;
+    border:1px solid rgba(0,0,0,.22);
+    background: var(--color-bg);
+    color: var(--color-text);
+    text-decoration:none;
+    font-weight:700;
+    font-size:12px;
+    white-space:nowrap;
+  }
+  .pill-lower--dark{
+    background: var(--color-text);
+    border-color: var(--color-text);
+    color:;
+  }
+
+  </style>
+
 </div>

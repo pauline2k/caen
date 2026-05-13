@@ -40,3 +40,12 @@
     border-radius: var(--global-radius);
   }
 }
+
+.pagination {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.vault-header__title {
+  margin-top: 20px;
+}

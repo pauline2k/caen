@@ -5,7 +5,6 @@
   <section class="author-header">
     <div class="row">
       <div class="col-xs-12">
-        <div class="author-card{{^if profile_image}} no-img{{/if}}">
           {{!-- Author profile image --}}
           {{#if profile_image}}
             <img class="lazyload author-card__image" 
@@ -24,7 +23,7 @@
             <div class="author-card__bio">{{bio}}</div>
 
             <div class="author-card__counter">
-              {{plural ../pagination.total empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}
+              {{plural ../pagination.total empty=(t 'No articles') singular=(t '1 article') plural=(t '% posts')}}
             </div>
 
             {{!-- Author social links --}}
@@ -82,7 +81,6 @@
               {{/if}}
             </div>
           </div>
-        </div>
       </div>
     </div>
   </section>
@@ -90,23 +88,35 @@
 
   {{!-- The main content/post by the author --}}
   {{#if posts}}
-    <div class="row">
-      <div class="col-xs-12">
-        <section class="section all-posts">
-          <div class="row posts">
-            {{#foreach posts}}
-              <div class="col-xs-12 col-md-6 col-lg-4 post-wrap">
-                {{> post-card class="col author"}}
-              </div>
-            {{/foreach}}
-          </div>
-          <div class="row">
-            <div class="col-xs-12 center-xs">
-              <button id="load-more-posts" class="btn btn--wide btn--brand btn--bordered">{{t "Load more posts"}}</button>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+  <div class="orb-rows" role="table" aria-label="Articles">
+    {{#foreach posts}}
+      {{!-- Collect tag slugs to filter on --}}
+      <article
+        class="orb-row"
+        role="row"
+        data-tags="{{#foreach tags}}{{slug}}{{^last}} {{/last}}{{/foreach}}"
+      >
+        <div class="c c--section" role="cell">
+          <div>{{tags limit="1"}}</div>
+          <div>{{date format="M/D/YY"}}</div>
+        </div>
+
+        <div class="c c--title" role="cell">
+          <a class="orb-title-link" href="{{url}}">{{title}}</a>
+        </div>
+
+        <div class="c c--dek" role="cell">
+          {{#if meta_description}}
+            {{meta_description}}
+          {{else}}
+          {{#if custom_excerpt}}
+            {{custom_excerpt}}
+          {{else}}
+            {{excerpt words="25"}}…
+          {{/if}}
+          {{/if}}
+        </div>
+      </article>
+    {{/foreach}}
   {{/if}}
 </div>

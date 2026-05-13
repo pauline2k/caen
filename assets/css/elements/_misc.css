@@ -12,7 +12,6 @@ figcaption {
   font-style: italic;
   font-weight: var(--font-weight-600);
   padding: var(--gap-sm);
-  text-align: center;
 
   a { 
     color: var(--color-primary); 

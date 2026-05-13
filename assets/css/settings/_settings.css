@@ -14,12 +14,16 @@
   /* Colors
   /*--------------------------------------*/
   /* brand colors */
-  --color-primary: var(--ghost-accent-color, #e50b4f);
+  --color-primary: var(--ghost-accent-color);
   --color-secondary: #f9d400;
+
+  --accent: var(--color-primary);
+  --accent-dim: color-mix(in srgb, var(--color-primary) 90%, black);
+  --accent-dusky: color-mix(in srgb, var(--color-primary) 70%, #666);
 
   /* neutral colors */
   --color-black: #000;
-  --color-dark: #080c21;
+  --color-dark: color-mix(in srgb, var(--color-primary) 8%, black);
   --color-dark-accent: #14182c; 
   --color-dark-accent-2: #1c1f33;
   --color-grey-darker: #4c4c4c;
@@ -56,9 +60,9 @@
   /*--------------------------------------*/
   /* Typography
   /*--------------------------------------*/
-  --font-family-serif: Times, Georgia, serif;
-  --font-family-sans-serif: 'Poppins', Tahoma, Arial, sans-serif;
-  --font-family-secondary: 'Open Sans', Tahoma, Arial, sans-serif;
+  --font-family-serif: 'Sorts Mill Goudy', serif;
+  --font-family-sans-serif: 'Libre Franklin', sans-serif;
+  --font-family-secondary: 'Sorts Mill Goudy', serif;
   --font-family-monospace: Consolas, Monaco,  monospace;
   --font-size-base: 1rem;
   --font-weight-ultra-thin: 100;

@@ -43,8 +43,8 @@ var callback = function(){
   // ========================================
   window.addEventListener('scroll', (event) => {
     // Modify header
-    window.scrollY > 56 ? addClass('.header', 'is-scrolled') : '';
-    window.scrollY <= 6 ? removeClass('.header', 'is-scrolled') : '';
+    //window.scrollY > 56 ? addClass('.header', 'is-scrolled') : '';
+    //window.scrollY <= 6 ? removeClass('.header', 'is-scrolled') : '';
     
     // Progressbar
     if (progressbar) {
@@ -119,6 +119,7 @@ var callback = function(){
     switch(evt.key) {
       case 'Escape':
         removeClass('.menu', 'is-active');
+        removeClass('.header__member-options', 'is-active');
         // removeClass('.search', 'is-active');
         document.body.style.overflowY = "auto"; 
         break;
@@ -172,7 +173,7 @@ var callback = function(){
       }
     }
 
-    userMenu.blur = () => {
+    userMenu.onblur = () => {
       removeClass('.header__member--open', 'is-active');
     }
   }

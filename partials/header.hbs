@@ -1,99 +1,46 @@
 {{!-- Site header --}}
+{{#is "home"}}
+<header class="header header__home">
+{{else}}
 <header class="header">
-  {{#is "post"}}<div id="progress"></div>{{/is}}
+{{/is}}
+  <div id="progress"></div>
   <div class="header__top">
-    <div class="container-fluid wrapper">
-      <div class="row">
-        <div class="col-xs-3 col-md-4 middle-xs is-flex">
-          {{!-- Search --}}
-          <div class="header__search">
-            <a class="header__search--open" data-ghost-search tabindex="0" 
-              title="{{t "Search"}}" aria-label="{{t "Search"}}">
-              {{>icon name="search" size="sm"}}
-            </a>
-          </div>
-        </div>
-
-        <div class="col-xs-6 col-md-4 center-xs">
-          {{!-- Blog logo or name --}}
-          {{#is "home"}}
-          <div class="header__brand flex-cc">
+    <div>
+      {{!-- Blog logo or name --}}
+      <div class="header__brand flex-cc">
+        <a href="{{@site.url}}">
+          {{#if @site.logo}}
+            <img class="header__logo" src="{{@site.logo}}" alt="{{@site.title}}">
           {{else}}
-          <div class="header__brand header__brand-not-home flex-cc">
-          {{/is}}
-            <a href="{{@site.url}}">
-              {{#if @site.logo}}
-                <img class="header__logo" src="{{@site.logo}}" alt="{{@site.title}}">
-              {{else}}
-                <h3 class="header__title">{{@site.title}}</h3>
-              {{/if}}
-            </a>
-          </div>
-        </div>
-        
-        <div class="col-xs-3 col-md-4 end-xs middle-xs is-flex">
-          {{!-- Member Links --}}
-          {{#if @site.members_enabled}}
-            <div class="header__member">
-              {{#is "home"}}
-              <a class="header__member--open" tabindex="0" aria-label="{{t "Subscribe/Log in"}}">
-                {{>icon name="user" size="sm"}}
-              </a>
-              {{/is}}
-
-              <div class="header__member-options">
-                {{#if @member}}
-                  <a class="signout-link" href="#signout" data-members-signout>{{t "Log out"}}</a>
-                  <a class="account-link signup-link-md" href="/account/"{{#if @custom.use_portal_links}} data-portal="account"{{/if}}>{{t "Account"}}</a>
-                {{else}}
-                  <a class="signin-link" href="/signin/"{{#if @custom.use_portal_links}} data-portal="signin"{{/if}}>{{t "Log in"}}</a>
-                  <a class="signup-link signup-link-md header-cta" href="/signup/"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}}>{{t "Subscribe"}}</a>
-                {{/if}}
-              </div>
-            </div>
+            <h3 class="header__title">{{@site.title}}</h3>
           {{/if}}
-
-          {{!-- Menu Button --}}
-          {{^is "home"}}
-          <button id="menu-open" class="header__menu--open hamburger" 
-            type="button" title="{{t "Menu"}}" aria-label="{{t "Menu"}}">
-            <span></span>
-          </button>
-          {{/is}}
-        </div>
+        </a>
       </div>
     </div>
-  </div>
+        
+    <div>
+      {{!-- Member Links --}}
+        <div class="header__member">
+          <a class="header__member--open hamburger" tabindex="0" aria-label="{{t "Menu"}}">
+                        <span></span>
 
-  {{!-- Menu --}}
-  {{#is "home"}}
-  <div class="header__bottom--home">
-  {{else}}
-  <div class="header__bottom">
-  {{/is}}
-    <div class="container-fluid wrapper">
-      {{!-- Blog navigation --}}
-      {{#is "home"}}
-      <nav class="header__nav">
-      {{else}}
-      <nav class="header__nav header__nav--not-home">
-      {{/is}}
-        {{navigation}}
-
-        {{!-- Secondary navigation --}}
-        {{#if @site.secondary_navigation}}
-          <div class="header__nav--secondary">
-            {{!-- Secondary Navigation Button --}}
-            <button class="header__dropdown--toggle flex flex-cc js-dropdown-menu-toggle"
-              type="button" title="{{t "More"}}" aria-label="{{t "More"}}">
-              {{> icon name="more-horizontal" size="sm"}}
-            </button>
-            <div class="header__dropdown js-dropdown">
-              {{navigation type="secondary"}}
-            </div>
-          </div>
-        {{/if}}
-      </nav>
+          </a>
+          <ul class="header__member-options">
+            {{#if @member}}
+              <li><a tabindex="0" href="/account/" title="{{t "Account"}}" aria-label="{{t "Account"}}">{{t "Account"}}</a></li>
+              <li><a tabindex="0" href="#signout" data-members-signout title="{{t "Log Out"}}" aria-label="{{t "Log Out"}}">{{t "Log Out"}}</a></li>
+            {{else}}
+              <li><a tabindex="0" href="/signup/" title="{{t "Subscribe!"}}" aria-label="{{t "Subscribe!"}}">{{t "Subscribe!"}}</a></li>
+              <li><a tabindex="0" href="/signin/" title="{{t "Log In"}}" aria-label="{{t "Log In"}}">{{t "Log In"}}</a></li>
+            {{/if}}
+            <li><a tabindex="0" href="/about" title="{{t "About"}}" aria-label="{{t "About"}}">{{t "About"}}</a></li>
+            <li><a data-ghost-search tabindex="0" href="" title="{{t "Search"}}" aria-label="{{t "Search"}}">{{t "Search"}}</a></li>
+            <li><a tabindex="0" href="/vault" title="{{t "Vault"}}" aria-label="{{t "Vault"}}">{{t "Vault"}}</a></li>
+            <li><a tabindex="0" href="/pitch-us" title="{{t "Pitch Us!"}}" aria-label="{{t "Pitch Us!"}}">{{t "Pitch Us!"}}</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </header>

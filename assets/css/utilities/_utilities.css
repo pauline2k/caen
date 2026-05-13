@@ -247,6 +247,10 @@
   }
 }
 
+.color-background {
+  background-color: var(--color-bg);
+}
+
 .color-text-acc2 {
   color: var(--color-text-accent-2);
 }

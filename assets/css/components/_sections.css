@@ -33,6 +33,11 @@
   }
 }
 
+.post-template,
+.page-template {
+  background-color: var(--accent-dusky);
+}
+
 .scroll-to-top {
   visibility: hidden;
   opacity: 0;

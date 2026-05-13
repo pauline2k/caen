@@ -1,50 +1,162 @@
-<div class="center-screen-wrapper">
-  <div class="center-screen center-screen-collage">
-    <a id="featured" name="featured"></a>
-    <section class="section section-featured latest-post">
-      <!--
-      <a href="/calendar" title="Calendar">
-        <div class="home-calendar">
-          <img class="calendar-orb" src="assets/images/orb.png" width="200" height="200">
-          <div>
-            <div
-                class="calendar-title"
-                data-text="Calendar of Events"
-             >
-             Calendar of Events
+<div class="hero">
+  <div class="hero-top">
+    <div class="masthead" aria-hidden="true">
+      <div class="orb">ORB</div>
+    </div>
+
+    <div class="calendar-link-sm">
+      {{#get "posts" filter="tag:calendar" limit="1"}}
+        {{#foreach posts}}
+          <a href="{{url}}" data-title="{{title}}">
+            <h2 class="sidebar-calendar-header">
+              Events Calendar
+            </h2>
+            <div class="sidebar-calendar-label" data-title="{{title}}"></div>
+          </a>
+        {{/foreach}}
+      {{/get}}
+    </div>
+
+    <div class="hero-top-pill-stack">
+      {{#if @member}}
+        <a class="pill" href="#signout">LOGOUT</a>
+        <a class="pill btn pill-subscribe" href="/account/">ACCOUNT</a>
+      {{else}}
+        <a class="pill" href="/signin/">LOGIN</a>
+        <a class="pill btn pill-subscribe" href="/signup/">SUBSCRIBE</a>
+      {{/if}}
+    </div>
+  </div>
+
+  <section class="section section-featured latest-post">
+  {{#get "posts" filter="featured:true+tag:-calendar" include="authors,tags" limit="all"}}
+    {{#foreach posts}}
+      {{#has tag="#homepage-wide-1,#homepage-wide-2,#homepage-wide-3,#homepage-wide-4,#homepage-wide-5"}}
+
+      {{#has tag="#homepage-wide-1"}}
+        <div class="article article-wide-1">
+      {{else}}
+      {{#has tag="#homepage-wide-2"}}
+        <div class="article article-wide-2">
+      {{else}}
+      {{#has tag="#homepage-wide-3"}}
+        <div class="article article-wide-3">
+      {{else}}
+      {{#has tag="#homepage-wide-4"}}
+        <div class="article article-wide-4">
+      {{else}}
+        <div class="article article-wide-5">
+      {{/has}}
+      {{/has}}
+      {{/has}}
+      {{/has}}
+          <div class="article-inner article-inner-wide">
+            <div>
+              <p class="m-0"><span class="article-tag">{{tags limit="1"}}</span></p>
+              <a href="{{url}}" title="{{title}}">
+                <h2 class="article-title">{{title}}</h2>
+              </a>
+              {{^has author='\O/,Oakland Review of Books'}}
+                <a href="{{primary_author.url}}" title="{{primary_author.name}}">
+                  <p class="m-0"><span class="article-author">{{primary_author.name}}</span></p>
+                </a>
+              {{/has}}
             </div>
-            <div
-              class="calendar-subtitle"
-              data-text="Gaze into the week ahead"
-            >
-              Gaze into the week ahead
+            <div>
+              <a href="{{url}}" title="{{title}}">
+                {{#if meta_description}}
+                  <p class="article-dek">{{meta_description}}</p>
+                {{else}}
+                {{#if excerpt}}
+                  <p class="article-dek">{{excerpt}}</p>
+                {{/if}}
+                {{/if}}
+              </a>
             </div>
           </div>
         </div>
-      </a>
-      -->
-      {{#get "posts" filter="featured:true+tag:-calendar" include="authors,tags" limit="all"}}
-        {{#foreach posts}}
-         <div class="article{{#has tag="#homepage-wide"}} article-wide{{/has}}{{#has tag="#homepage-tall"}} article-tall{{/has}}" id="{{id}}">
-           <div class="article-inner">
-             <a href="{{url}}" title="{{title}}">
-               <div class="article-title">{{title}}</div>
-               {{#has author='\O/,Oakland Review of Books'}}
+
+      {{else}}
+      {{#has tag="#homepage-tall-1,#homepage-tall-2,#homepage-tall-3,#homepage-tall-4,#homepage-tall-5"}}
+
+      {{#has tag="#homepage-tall-1"}}
+        <div class="article article-tall-1">
+      {{else}}
+      {{#has tag="#homepage-tall-2"}}
+        <div class="article article-tall-2">
+      {{else}}
+      {{#has tag="#homepage-tall-3"}}
+        <div class="article article-tall-3">
+      {{else}}
+      {{#has tag="#homepage-tall-4"}}
+        <div class="article article-tall-4">
+      {{else}}
+        <div class="article article-tall-5">
+      {{/has}}
+      {{/has}}
+      {{/has}}
+      {{/has}}
+          <div class="article-inner article-inner-tall">
+            <div>
+              <p class="m-0"><span class="article-tag">{{tags limit="1"}}</span></p>
+              <a href="{{url}}" title="{{title}}">
+                <h2 class="article-title">{{title}}</h2>
+              </a>
+              {{^has author='\O/,Oakland Review of Books'}}
+                <a href="{{primary_author.url}}" title="{{primary_author.title}}">
+                  <p class="m-0"><span class="article-author">{{primary_author.name}}</span></p>
+                </a>
+              {{/has}}
+            </div>
+            <div>
+              <a href="{{url}}" title="{{title}}">
                 {{#if meta_description}}
-                  <div class="article-author" data-text="{{meta_description}}">{{meta_description}}</div>
+                  <p class="article-dek">{{meta_description}}</p>
                 {{else}}
                 {{#if excerpt}}
-                  <div class="article-author" data-text="{{excerpt}}">{{excerpt}}</div>
+                  <p class="article-dek">{{excerpt}}</p>
                 {{/if}}
                 {{/if}}
-               {{else}}
-                 <div class="article-author" data-text="by {{primary_author.name}}">by {{primary_author.name}}</div>
-               {{/has}}
-             </a>
-           </div>
-         </div>
-        {{/foreach}}
-      {{/get}}
-    </section>
-  </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+      {{else}}
+
+      {{#has tag="#homepage-tile-1"}}
+        <div class="article article-tile-1">
+      {{else}}
+      {{#has tag="#homepage-tile-2"}}
+        <div class="article article-tile-2">
+      {{else}}
+      {{#has tag="#homepage-tile-3"}}
+        <div class="article article-tile-3">
+      {{else}}
+      {{#has tag="#homepage-tile-4"}}
+        <div class="article article-tile-4">
+      {{else}}
+        <div class="article article-tile-5">
+      {{/has}}
+      {{/has}}
+      {{/has}}
+      {{/has}}      
+          <div class="article-inner">
+            <p class="m-0"><span class="article-tag">{{tags limit="1"}}</span></p>
+            <a href="{{url}}" title="{{title}}">
+              <h2 class="article-title">{{title}}</h2>
+            </a>
+            {{^has author='\O/,Oakland Review of Books'}}
+              <a href="{{primary_author.url}}" title="{{primary_author.name}}">            
+                <p class="m-0"><span class="article-author">{{primary_author.name}}</span></p>
+              </a>
+            {{/has}}
+          </div>
+        </div>
+      {{/has}}
+      {{/has}}
+    {{/foreach}}
+  {{/get}}
+  </section>
 </div>

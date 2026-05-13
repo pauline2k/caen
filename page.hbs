@@ -4,16 +4,16 @@
 {{#post}}
 <div class="container-fluid wrapper">
   <div class="row">
-    {{#match @page.show_title_and_feature_image}}
-      <div class="col-xs-12">
-        <div class="page__header">
-          <h1 class="page__title">{{title}}</h1>
-        </div>
-      </div>
-    {{/match}}
     <div class="col-xs-12">
       <article class="{{post_class}} post-access-{{visibility}}">
         <div class="post__content">
+          {{#match @page.show_title_and_feature_image}}
+            <div class="col-xs-12">
+              <div class="page__header">
+                <h1 class="page__title">{{title}}</h1>
+              </div>
+            </div>
+          {{/match}}
           {{#if access}}
             {{content}}
           {{else}}

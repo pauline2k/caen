@@ -30,10 +30,10 @@
 
     <style>
       body { 
-        --font-family-sans-serif: var(--gh-font-body, 'Poppins');
-        --font-family-secondary: var(--gh-font-body, 'Poppins');
+        --font-family-sans-serif: 'Libre Franklin';
+        --font-family-secondary: 'Sorts Mill Goudy';
       }
-      body h1,body h2,body h3,body h4,body h5,body h6 { font-family: var(--gh-font-heading, 'Poppins'); }
+      body h1,body h2,body h3,body h4,body h5,body h6 { font-family: 'Libre Franklin'; }
     </style>
 
     {{!-- Theme Configuration --}}
@@ -52,7 +52,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orelega+One&display=swap" rel="stylesheet">
     
 <style>
   .center-screen-collage {
@@ -80,7 +79,7 @@
     </main>
 
     {{!-- The footer at the very bottom --}}
-    {{^is "signin, signup"}}
+    {{^is "signin, signup, home"}}
       {{> footer}}
       <div class="scroll-to-top">{{> icon name="arrow-up"}}</div>
     {{/is}}

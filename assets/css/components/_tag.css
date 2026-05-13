@@ -178,7 +178,10 @@
 
   &__title {
     flex: 1 0 auto;
+    font-size: 30px;
+    font-weight: 800;
     margin: 0;
+    text-transform: capitalize;
 
     @media (--viewport-md) {
       flex: 0;

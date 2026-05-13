@@ -6,14 +6,14 @@
   margin: 0 auto
 }
 
-.container-fluid, .container {
+.container {
   margin-right: auto;
   margin-left: auto;
 }
 
 .container-fluid {      
-  padding-right: var(--outer-margin);
-  padding-left: var(--outer-margin);
+  margin-right: var(--outer-margin);
+  margin-left: var(--outer-margin);
 }
 
 .row {

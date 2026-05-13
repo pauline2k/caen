@@ -1,89 +1,105 @@
-  <div class="center-screen-wrapper">
-    <div class="center-screen" style="padding-top: 50px;">
-    <hr/>
-    <a id="vibe-reports" name="vibe-reports"></a>
-    <h2 style="color:black;">Vibe reports</h2>
-    <section class="section all-posts">
-      <div class="row posts">
-        {{#get "posts" include="authors,tags" filter="tag:vibe-reports+featured:false" limit="5"}}
-          {{#foreach posts}}
-            <div class="col-xs-12">
-              {{> vibe-card}}
-            </div>
-          {{/foreach}}
-        {{/get}}
-      </div>
-      <div class="row">
-        <div class="col-xs-12 center-xs" style="padding-top: 25px;">
-          <a href="/tag/vibe-reports/">More vibes <img src="https://www.oaklandreviewofbooks.org/assets/images/hand-icon-right.png" style="margin:0;position:relative;top:3px;"></a>
-        </div>
-      </div>
-    </section>
-    <hr/>
-    <h2 style="color:black;">Oakland Quote Generator</h2>
-    <section class="section all-posts">
-      <div class="row">
-        <div class="col-xs-12">
-          <iframe id="booksFrame" src="https://oaklandinbooks.araxne.com/" style="width:80%;height:320px;border:none;"></iframe>
-        </div>
-      </div>
-    </section>
-    <hr/>
-    <a id="reviews" name="reviews"></a>
-    <h2 style="color:black;">Reviews</h2>
-    <section class="section all-posts">
-      <div class="row">
-        <div class="col-xs-12">
-          {{#get "posts" include="authors,tags" filter="tag:reviews+featured:false" limit="all"}}
-            <div class="row posts">
-              {{#foreach posts}}
-                <div class="col-xs-12 col-md-6 col-lg-4 post-wrap">
-                  {{> post-card class="col"}}
-                </div>
-              {{/foreach}}
-            </div>
-          {{/get}}
-        </div>
-      </div>
-    </section>
-    <hr/>
-    <a id="syllabus" name="syllabus"></a>
-    <h2 style="color:black;">Oakland Syllabus</h2>
-    <div class="row">
-      <a class="home-syllabus-link" href="https://www.oaklandreviewofbooks.org/introducing-the-oakland-review-of-books-syllabus/">
-        <img src="/assets/images/syllabus.jpg"></img>
-      </a>
-    </div>
-    <hr/>    
-    <a id="about" name="about"></a>
-    <h2 style="color:black;">ab\O/ut</h2>
-    <div class="row">
-      <div class="col-xs-12">
-        {{#get "pages" include="authors,tags" filter="tag:about" limit="all"}}
-          <div class="row posts">
-            {{#foreach pages}}
-              <div class="col-xs-12" style="padding:30px;color:black;">
-                {{ excerpt characters="403"}} &hellip; <a href="/about/"><img src="https://www.oaklandreviewofbooks.org/assets/images/hand-icon-right.png" style="margin:0;position:relative;top:3px;"></a>
-              </div>
-            {{/foreach}}
+<section class="home-posts orb-table" data-orb-table>
+  {{!-- Tag filter pills (client-side filter of the already-rendered rows) --}}
+  <nav class="orb-pills" aria-label="Filter posts by tag">
+    <button class="pill-lower" type="button" data-tag="vibe-reports" aria-pressed="false">
+      Vibe Reports
+    </button>
+    <button class="pill-lower" type="button" data-tag="reviews" aria-pressed="false">
+      Reviews
+    </button>
+    <button class="pill-lower is-active" type="button" data-tag="all" aria-pressed="true">
+      The complete ORB
+    </button>
+  </nav>
+
+  <div class="orb-rows" role="table" aria-label="Articles">
+    {{#get "posts" filter="featured:false+tag:-calendar" include="authors,tags" limit="50"}}
+      {{#foreach posts}}
+        <article
+          class="orb-row"
+          role="row"
+          data-tags="{{#foreach tags}}{{slug}}{{^last}} {{/last}}{{/foreach}}"
+        >
+          <div class="c c--section" role="cell">
+            <div>{{tags limit="1"}}</div>
+            <div>{{date format="M/D/YY"}}</div>
           </div>
-        {{/get}}
-      </div>
-    </div>
-    <a id="pitch-us" name="pitch-us"></a>
-    <h2 style="color:black;">Pitch Us!</h2>
-    <div class="row">
-      <div class="col-xs-12">
-        {{#get "pages" include="authors,tags" filter="tag:pitch-us" limit="all"}}
-          <div class="row posts">
-            {{#foreach pages}}
-              <div class="col-xs-12" style="padding:0 30px 40px 30px;color:black;vertical-align:bottom;">
-                {{ excerpt characters="403"}} &hellip; <a href="/pitch-us/"><img src="https://www.oaklandreviewofbooks.org/assets/images/hand-icon-right.png" style="margin:0;position:relative;top:3px;"></a>
-              </div>
-            {{/foreach}}
+
+          <div class="c c--title" role="cell">
+            <a class="orb-title-link" href="{{url}}">{{title}}</a>
           </div>
-        {{/get}}
-      </div>
-    </div>
+
+          <div class="c c--dek" role="cell">
+            {{#if meta_description}}
+              {{meta_description}}
+            {{else}}
+            {{#if custom_excerpt}}
+              {{custom_excerpt}}
+            {{else}}
+              {{excerpt words="25"}}…
+            {{/if}}
+            {{/if}}
+          </div>
+
+          <div class="c c--author" role="cell">
+            {{^has author='\O/'}}
+              <a href="{{primary_author.url}}">
+                {{primary_author.name}}
+              </a>
+            {{/has}}
+          </div>
+        </article>
+      {{/foreach}}
+    {{/get}}
   </div>
-</div>
+
+  <div class="index-more-posts-outer">
+    <a class="pill btn pill-lower pill-lower-more-posts" href="">More</a>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.querySelector("[data-orb-table]");
+      if (!root) return;
+
+      const pills = Array.from(root.querySelectorAll(".pill-lower[data-tag]"));
+      const rows = Array.from(root.querySelectorAll(".orb-row[data-tags]"));
+
+      function setActivePill(tag) {
+        pills.forEach(btn => {
+          const isActive = btn.dataset.tag === tag;
+          btn.classList.toggle("is-active", isActive);
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      }
+
+      function applyFilter(tag) {
+        const wanted = (tag || "all").toLowerCase();
+        let visible = 0;
+
+        rows.forEach(row => {
+          const tagList = (row.getAttribute("data-tags") || "").toLowerCase().split(/\s+/).filter(Boolean);
+          const show = (visible < 8) && (wanted === "all" || tagList.includes(wanted));
+          row.style.display = show ? "" : "none";
+          if (show) visible += 1;
+        });
+
+        setActivePill(wanted);
+        if (wanted === "all") {
+          root.querySelector(".pill-lower-more-posts").href = "/vault";
+        } else {
+          root.querySelector(".pill-lower-more-posts").href = `/tag/${wanted}`;
+        }
+      }
+
+      // Click handling
+      pills.forEach(btn => {
+        btn.addEventListener("click", () => applyFilter(btn.dataset.tag));
+      });
+
+      const initial = "vibe-reports";
+      const hasInitialPill = pills.some(b => b.dataset.tag === initial);
+      applyFilter(hasInitialPill ? initial : "all");
+    })();
+  </script>
+</section>

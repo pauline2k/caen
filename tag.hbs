@@ -38,25 +38,42 @@
     <div class="row">
       <div class="col-xs-12">
         <section class="section all-posts">
-          <div class="row posts">
-            {{#foreach posts}}
-              {{#has tag="vibe reports, calendar"}}
-                <div class="col-xs-12 post-wrap">
-                  {{> vibe-card }}
-                </div>
-              {{else}}
-                <div class="col-xs-12 col-md-6 col-lg-4 post-wrap">
-                  {{> post-card class="col tag"}}
-                </div>
-              {{/has}}
-            {{/foreach}}
-          </div>
-          <div class="row">
-            <div class="col-xs-12 center-xs">
-              <button id="load-more-posts" class="btn btn--wide btn--brand btn--bordered">
-                {{t "Load more posts"}}
-              </button>
-            </div>
+          <div class="orb-rows" role="table" aria-label="Articles">
+              {{#foreach posts}}
+                {{!-- Collect tag slugs to filter on --}}
+                <article
+                  class="orb-row"
+                  role="row"
+                  data-tags="{{#foreach tags}}{{slug}}{{^last}} {{/last}}{{/foreach}}"
+                >
+                  <div class="c c--section" role="cell">
+                    <div>{{tags limit="1"}}</div>
+                    <div>{{date format="M/D/YY"}}</div>
+                  </div>
+
+                  <div class="c c--title" role="cell">
+                    <a class="orb-title-link" href="{{url}}">{{title}}</a>
+                  </div>
+
+                  <div class="c c--dek" role="cell">
+                    {{#if meta_description}}
+                      {{meta_description}}
+                    {{else}}
+                    {{#if custom_excerpt}}
+                      {{custom_excerpt}}
+                    {{else}}
+                      {{excerpt words="25"}}…
+                    {{/if}}
+                    {{/if}}
+                  </div>
+
+                  <div class="c c--author" role="cell">
+                    {{^has author='\O/'}}
+                      {{primary_author.name}}
+                    {{/has}}
+                  </div>
+                </article>
+              {{/foreach}}
           </div>
         </section>
       </div>
