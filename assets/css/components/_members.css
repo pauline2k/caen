@@ -80,11 +80,6 @@
     margin: 0;
   }
 
-  .site-logo {
-    display: block;
-    max-height: calc(2.5*var(--gap-rem));
-  }
-
   .site-description {
     position: absolute;
     font-size: calc(2 * var(--font-size-base));
@@ -397,5 +392,4 @@ form[data-members-form].error .message-error {
   grid-template-columns: repeat(auto-fit,minmax(16rem,1fr));
 }
 
-.page-membership .hero__post-info { display: none; }
 

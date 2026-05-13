@@ -1,12 +1,4 @@
 /* Tag Card */
-.top-tags {
-  .tag-card {
-    @media (--viewport-xl) {
-      margin-bottom: 0;
-    }
-  }
-}
-
 .tag-card {
   position: relative;
   display: flex;
