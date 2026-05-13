@@ -101,16 +101,42 @@
     }
   } 
 
+  &__oakland-quote-body {
+    margin-bottom: 15px;
+  }
+
+  &__oakland-quote-pill {
+    font-weight: 600;
+    margin-top: 15px;
+    padding: 2px 10px;
+    color: white;
+    cursor: pointer;
+    line-height: 1.4em;
+    border: 1px solid white;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto !important;
+  }
+
+  &__oakland-quote-pill:hover {
+    background-color: white;
+    color: var(--accent-dim);
+  }
+
   &__bottom {
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    padding: var(--gap) 0;
-    color: var(--color-text-accent-3);
+    flex-direction: row;
+    margin: 0;
+    padding: 0 0 var(--gap) 0;
+    color: white;
+    background-color: var(--color-dark);
+  }
 
-    @media (--viewport-sm) {
-      flex-direction: row;
-    }
+  &__oakland-quote-title,
+  &__description a {
+    text-decoration: underline;
+    color: color-mix(in srgb, var(--accent) 20%, white);
   }
 
   a:hover,

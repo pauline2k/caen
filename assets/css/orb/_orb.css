@@ -54,7 +54,7 @@
   position: relative;
 }
 
-.article-inner{
+.article-inner {
   inset:0;
   padding: clamp(16px, 1.6vw, 28px);
   display:flex;
@@ -66,6 +66,7 @@
   container-type: inline-size;
   width: 100%;
   background: center no-repeat;
+  background-size: 100% 100%;
   transition: filter 0.2s ease;
 }
 
@@ -78,6 +79,10 @@
   flex-direction: row;
   align-items: center;
   width: 90%;
+
+  div {
+    flex-grow: 1;
+  }
 }
 
 .article-inner-tall {
@@ -101,6 +106,54 @@
 .article-tall-5 {
   grid-row: span 2;
 }
+
+.article-special-feature {
+  grid-column: 1 / -1;
+  height: 300px;
+  --shape: url("../../assets/images/article-wide-3.svg");
+  filter:
+    drop-shadow(-1px 1px 0 var(--accent-dim))
+    drop-shadow(-1px -1px 0 var(--accent-dim))
+    drop-shadow(0 1px 0 var(--accent-dim))
+    drop-shadow(0 -1px 0 var(--accent-dim));
+
+  .article-inner-wide {
+    -webkit-mask: var(--shape) center / 100% 100% no-repeat;
+    mask: var(--shape) center / 100% 100% no-repeat;
+
+    margin: 4px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 40% 60%;
+
+    background-color: var(--accent-dim);
+    min-height: 250px;
+    padding: 0;
+
+    .article-special-feature-img-outer {
+      height: 100%;
+      .article-special-feature-img {
+        background: center no-repeat;
+        background-size: cover;
+        height: 100%;
+      }
+    }
+
+    .article-title {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.article-special-feature:hover {
+  filter:
+    drop-shadow(-1px 1px 0 var(--accent-dim))
+    drop-shadow(-1px -1px 0 var(--accent-dim))
+    drop-shadow(0 1px 0 var(--accent-dim))
+    drop-shadow(0 -1px 0 var(--accent-dim))
+    drop-shadow(5px 10px 10px rgba(0,0,0,.9));
+}
+
 
 .article-wide-1 .article-inner-wide {
   background-image: url("../../assets/images/article-wide-1.svg");
@@ -208,7 +261,7 @@
 }
 
 .article .article-title {
-  margin: 0 0 12px 0;
+  margin: 10px 0 5px 0;
   font-weight: 800;
   line-height: 1.05;
   font-size: clamp(20px,10cqw,30px);
@@ -233,10 +286,11 @@
 }
 
 .article .article-author {
-  font-size: clamp(12px,8cqw,24px);
+  font-size: 22px;
   font-family: "Sorts Mill Goudy", serif;
   font-weight: 400;
   font-style: italic;
+  line-height: 1.2em;
   margin: 0;
   background-color: white;
   color: rgba(0,0,0,.82);
@@ -272,6 +326,22 @@
 .article-tall-4 .article-dek,
 .article-tall-5 .article-dek {
   font-size: clamp(15px, 10cqw, 20px);
+}
+
+.article-special-feature .article-tag,
+.article-special-feature .article-title,
+.article-special-feature .article-author,
+.article-special-feature .article-dek {
+  color: white;
+  background-color: transparent;
+}
+
+.article-special-feature .article-dek {
+  font-size: clamp(15px, 5cqw, 20px);
+}
+
+.article-special-feature-inner {
+  padding: clamp(16px, 1.6vw, 28px);
 }
 
 .calendar-orb {
@@ -369,7 +439,7 @@
   justify-content:center;
   height: 34px;
   padding: 0 18px;
-  border-radius: var(--radius);
+  border-radius: 999px;
   border: 1px solid rgba(255,255,255,.65);
   background: rgba(0,0,0,.06);
   color:#fff;
@@ -398,10 +468,6 @@
 
 .post-header {
   text-align: center;
-}
-
-.post-hero {
-  margin: 0 0 0.3em 0;
 }
 
 .post-hero__author-names {
@@ -455,22 +521,20 @@
   margin: 15px 0;
 }
 
-.post-hero__title {
-  margin: 20px 0 0 0;
-}
-
 .post-metadata {
   color: #888;
   font-size: 0.8em;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
-  margin: 15px 0;
+  margin: 15px 0 30px 0;
   font-family: 'Libre Franklin';
 }
 
 .post__content p {
-  font-size: 1.2rem;
+  font-family: 'Crimson Text', serif;
+  font-size: 20px;
+  line-height: 1.5em;
 }
 
 .posts {

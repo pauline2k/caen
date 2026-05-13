@@ -26,22 +26,24 @@
         {{/get}}
       </section>
 
+      {{#if @custom.sidebar_banner_text}}
       <section>
-        <div class="sidebar-link">
-          <a href="/about">About</a>
+        <div class="sidebar__announcement-banner">
+          {{ @custom.sidebar_banner_text }}
         </div>
-        <div class="sidebar-link">
-          <a data-ghost-search href="">Search</a>
-        </div>
-        <div class="sidebar-link">
-          <a href="/pitch-us">Pitch Us!</a>
-        </div>
+      </section>
+      {{/if}}
+
+      <section>
+        <a class="pill sidebar-pill" href="/about">About</a>
+        <a class="pill sidebar-pill" data-ghost-search href="">Search</a>
+        <a class="pill sidebar-pill" href="/pitch-us">Pitch Us!</a>
       </section>
 
       {{#if @site.members_enabled}}
         <form class="subscribe-form" data-members-form="subscribe">
           <input aria-labelledby="footer-subscribe" data-members-email type="email" placeholder="email@email.com" required/>
-          <button type="submit" class="sidebar-link sidebar-link-subscribe">
+          <button type="submit" class="pull sidebar-pill sidebar-pill-subscribe">
             Subscribe!
           </button>
           <div class="message message-success">
@@ -96,7 +98,6 @@
       --paper: #fff;
       --tint: color-mix(in srgb, var(--accent) 8%, black);
       --sidebar: #d35631;
-      --radius: 999px;
       --shadow: 0 10px 25px rgba(0,0,0,.12);
       --sidebar-expanded: 200px;
       --medium-breakpoint: 700px;
@@ -316,6 +317,15 @@
   text-align: center;
 }
 
+.sidebar__announcement-banner {
+  background:
+    linear-gradient(white, white) top center / 60% 1px no-repeat,
+    linear-gradient(white, white) bottom center / 60% 1px no-repeat;
+  font-size: 16px;
+  line-height: 1.4em;
+  padding: 20px 0;
+}
+
 .sidebar-calendar-header {
   text-transform: uppercase;
   font-size: 22px;
@@ -350,27 +360,25 @@
   color: black;
 }
 
-.sidebar-link {
-  font-size: 16px;
+.sidebar-pill {
   font-weight: 600;
   margin-bottom: 15px;
   padding: 2px 10px;
-  border-radius: 20px;
   color: white;
   line-height: 1.4em;
-  background-color: var(--accent-dim);
   border: 1px solid white;
   text-align: center;
-  text-transform: none;
+  text-transform: uppercase;
   width: 100%;
 }
 
-.sidebar-link-subscribe {
+.sidebar-pill-subscribe {
   background-color: white;
   color: var(--accent-dim);
+  font-size: 14px;
 }
 
-.sidebar-link:hover {
+.sidebar-pill:hover {
   background-color: white;
   color: var(--accent-dim);
 }

@@ -48,7 +48,8 @@ var callback = function(){
     
     // Progressbar
     if (progressbar) {
-      if (config.enable_progress_bar) {
+      var post = document.querySelector('.post');
+      if (config.enable_progress_bar && post) {
         var scrollTop = document.querySelector('.post')["scrollTop"] ||
                         document.documentElement["scrollTop"] || 
                         document.body["scrollTop"];
@@ -719,16 +720,20 @@ const socialWindow = (url) => {
   window.open(url,"NewWindow",params);
 }; 
 
-// if last page disable button
-if (global.pagination_current_page === global.pagination_max_pages) {
-  const loadMore = document.querySelector('#load-more-posts')
-  loadMore.disabled = true;
-  loadMore.classList.add('btn--disabled');
-}
 
 // ===============
 // Load More Posts
 // ===============
+
+// if last page disable button
+if (global.pagination_current_page === global.pagination_max_pages) {
+  const loadMore = document.querySelector('#load-more-posts')
+  if (loadMore) {
+    loadMore.disabled = true;
+    loadMore.classList.add('btn--disabled');
+  }
+}
+
 const loadMorePosts = (button) => {
   
   // Next link
@@ -799,3 +804,51 @@ function getParameterByName(name, url) {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+// ================================
+// Fetch Oakland quotes
+// ================================
+
+function fetchOaklandQuote() {
+  const quoteBody = document.querySelector('#oakland-quote');
+  if (!quoteBody) return;
+  const apiUrl = 'https://oaklandinbooks.araxne.com/quote.json';
+
+  async function loadApiData() {
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const data = await res.json();
+      renderData(data);
+    } catch (err) {
+      console.error('API fetch failed:', err);
+    }
+  }
+
+  function renderData(data) {
+    if (data && typeof data === 'object' && !Array.isArray(data)) {
+      quoteBody.innerText = data.quote;
+      document.querySelector('#oakland-quote-author').innerText = data.author;
+      document.querySelector('#oakland-quote-url').href = data.url;
+      document.querySelector('#oakland-quote-title').innerText = data.title;
+    }
+  }
+
+  loadApiData();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener('DOMContentLoaded', fetchOaklandQuote);
+} else {
+  fetchOaklandQuote();
+};

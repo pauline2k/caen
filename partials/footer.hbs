@@ -2,22 +2,31 @@
 <footer class="footer">
   <div class="footer__top">
     <div class="row">
-      <div class="col-xs-12 col-md-6">
+      <div class="col-xs-12 col-md-6 m-b-md">
         <h5 class="m-b-sm">{{t "Oakland Quote Generator"}}</h5>
-        <div>"An Oakland Quote!"</div>
-        <div><em>—Oakland</em></div>
+        <div id="oakland-quote" class="footer__oakland-quote-body">"An Oakland Quote!"</div>
+        <div>
+          &#151<span id="oakland-quote-author">Oakland</span>,
+          <a id="oakland-quote-url" class="footer__oakland-quote-title" href="">
+            <em id="oakland-quote-title">Oakland</em>
+          </a>
+        </div>
+        <btn class="pill footer__oakland-quote-pill" onClick="fetchOaklandQuote()">Another One!</btn>
       </div>
-      <div class="col-xs-12 col-md-2">
+      <div class="col-xs-12 col-md-2 m-b-md">
         <h5 class="m-b-sm">{{t "Social"}}</h5>
         <div>
-          <a href="https://bsky.app/profile/oaklandreviewofbooks.org">Bluesky {{bluesky}}</a>
+          <a href="https://bsky.app/profile/oaklandreviewofbooks.org">Bluesky</a>
+        </div>
+        <div>
+          <a href="https://www.instagram.com/oaklandreviewofbooks">Instagram </a>
         </div>
       </div>
-      <div class="col-xs-12 col-md-4">
+      <div class="col-xs-12 col-md-4 footer__description">
         <h5 class="m-b-sm">{{@site.title}}</h5>
         <div class="m-b">Design consultant: Justin Carder</div>
         <div class="m-b">Collages provided by Gregory Hom, whose work can be seen <a href="https://www.tumblr.com/theoretical-mutant-4734">here</a> or purchased at Spectator Books.</a></div>
-        <div class="m-b" id="footer-subscribe">{{@site.description}}</div>
+        <div id="footer-subscribe">{{@site.description}}</div>
       </div>
     </div>
   </div>

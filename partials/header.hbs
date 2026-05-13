@@ -28,15 +28,14 @@
           </a>
           <ul class="header__member-options">
             {{#if @member}}
-              <li><a tabindex="0" href="/account/" title="{{t "Account"}}" aria-label="{{t "Account"}}">{{t "Account"}}</a></li>
-              <li><a tabindex="0" href="#signout" data-members-signout title="{{t "Log Out"}}" aria-label="{{t "Log Out"}}">{{t "Log Out"}}</a></li>
+              <li><a tabindex="0" href="#/portal/account" title="{{t "Account"}}" aria-label="{{t "Account"}}">{{t "Account"}}</a></li>
             {{else}}
-              <li><a tabindex="0" href="/signup/" title="{{t "Subscribe!"}}" aria-label="{{t "Subscribe!"}}">{{t "Subscribe!"}}</a></li>
-              <li><a tabindex="0" href="/signin/" title="{{t "Log In"}}" aria-label="{{t "Log In"}}">{{t "Log In"}}</a></li>
+              <li><a tabindex="0" href="#/portal/signup/" title="{{t "Subscribe!"}}" aria-label="{{t "Subscribe!"}}">{{t "Subscribe!"}}</a></li>
+              <li><a tabindex="0" href="#/portal/signin/" title="{{t "Log In"}}" aria-label="{{t "Log In"}}">{{t "Log In"}}</a></li>
             {{/if}}
             <li><a tabindex="0" href="/about" title="{{t "About"}}" aria-label="{{t "About"}}">{{t "About"}}</a></li>
             <li><a data-ghost-search tabindex="0" href="" title="{{t "Search"}}" aria-label="{{t "Search"}}">{{t "Search"}}</a></li>
-            <li><a tabindex="0" href="/vault" title="{{t "Vault"}}" aria-label="{{t "Vault"}}">{{t "Vault"}}</a></li>
+            <li><a tabindex="0" href="/stacks" title="{{t "Archive"}}" aria-label="{{t "Archive"}}">{{t "Archive"}}</a></li>
             <li><a tabindex="0" href="/pitch-us" title="{{t "Pitch Us!"}}" aria-label="{{t "Pitch Us!"}}">{{t "Pitch Us!"}}</a></li>
           </ul>
         </div>

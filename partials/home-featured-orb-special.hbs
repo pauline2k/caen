@@ -19,17 +19,52 @@
 
     <div class="hero-top-pill-stack">
       {{#if @member}}
-        <a class="pill" href="#signout">LOGOUT</a>
-        <a class="pill btn pill-subscribe" href="/account/">ACCOUNT</a>
+        <a class="pill btn pill-subscribe" href="/#/portal/account">ACCOUNT</a>
       {{else}}
-        <a class="pill" href="/signin/">LOGIN</a>
-        <a class="pill btn pill-subscribe" href="/signup/">SUBSCRIBE</a>
+        <a class="pill" href="/#/portal/signin/">LOGIN</a>
+        <a class="pill btn pill-subscribe" href="/#/portal/signup/">SUBSCRIBE</a>
       {{/if}}
     </div>
   </div>
 
   <section class="section section-featured latest-post">
-  {{#get "posts" filter="featured:true+tag:-calendar" include="authors,tags" limit="all"}}
+  {{#get "posts" filter="featured:true+tag:hash-homepage-special-feature" include="authors,tags" limit="all"}}
+    {{#foreach posts}}
+      <div class="article article-special-feature">
+        <div class="article-inner article-inner-wide">
+          <a class="article-special-feature-img-outer" href="{{url}}">
+            <div
+              class="article-special-feature-img"
+              style="background-image: url('{{img_url feature_image}}');"
+            >
+            </div>
+          </a>
+          <div class="article-special-feature-inner">
+            <a href="{{url}}" title="{{title}}">
+              <h2 class="article-title">{{title}}</h2>
+            </a>
+            <a href="{{url}}" title="{{title}}">
+              {{#if meta_description}}
+                <p class="article-dek">{{meta_description}}</p>
+              {{else}}
+              {{#if excerpt}}
+                <p class="article-dek">{{excerpt}}</p>
+              {{/if}}
+              {{/if}}
+            </a>
+            {{^has author='\O/,Oakland Review of Books'}}
+              <a href="{{primary_author.url}}" title="{{primary_author.name}}">
+                <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
+              </a>
+            {{/has}}
+          </div>
+        </div>
+      </div>
+    {{/foreach}}
+  {{/get}}
+
+
+  {{#get "posts" filter="featured:true+tag:-calendar+tag:-hash-homepage-special-feature" include="authors,tags" limit="all"}}
     {{#foreach posts}}
       {{#has tag="#homepage-wide-1,#homepage-wide-2,#homepage-wide-3,#homepage-wide-4,#homepage-wide-5"}}
 
@@ -52,13 +87,12 @@
       {{/has}}
           <div class="article-inner article-inner-wide">
             <div>
-              <p class="m-0"><span class="article-tag">{{tags limit="1"}}</span></p>
               <a href="{{url}}" title="{{title}}">
                 <h2 class="article-title">{{title}}</h2>
               </a>
               {{^has author='\O/,Oakland Review of Books'}}
                 <a href="{{primary_author.url}}" title="{{primary_author.name}}">
-                  <p class="m-0"><span class="article-author">{{primary_author.name}}</span></p>
+                  <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
                 </a>
               {{/has}}
             </div>
@@ -98,15 +132,9 @@
       {{/has}}
           <div class="article-inner article-inner-tall">
             <div>
-              <p class="m-0"><span class="article-tag">{{tags limit="1"}}</span></p>
               <a href="{{url}}" title="{{title}}">
                 <h2 class="article-title">{{title}}</h2>
               </a>
-              {{^has author='\O/,Oakland Review of Books'}}
-                <a href="{{primary_author.url}}" title="{{primary_author.title}}">
-                  <p class="m-0"><span class="article-author">{{primary_author.name}}</span></p>
-                </a>
-              {{/has}}
             </div>
             <div>
               <a href="{{url}}" title="{{title}}">
@@ -118,10 +146,14 @@
                 {{/if}}
                 {{/if}}
               </a>
+              {{^has author='\O/,Oakland Review of Books'}}
+                <a href="{{primary_author.url}}" title="{{primary_author.title}}">
+                  <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
+                </a>
+              {{/has}}
             </div>
           </div>
         </div>
-
 
       {{else}}
 
@@ -143,13 +175,12 @@
       {{/has}}
       {{/has}}      
           <div class="article-inner">
-            <p class="m-0"><span class="article-tag">{{tags limit="1"}}</span></p>
             <a href="{{url}}" title="{{title}}">
               <h2 class="article-title">{{title}}</h2>
             </a>
             {{^has author='\O/,Oakland Review of Books'}}
               <a href="{{primary_author.url}}" title="{{primary_author.name}}">            
-                <p class="m-0"><span class="article-author">{{primary_author.name}}</span></p>
+                <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
               </a>
             {{/has}}
           </div>

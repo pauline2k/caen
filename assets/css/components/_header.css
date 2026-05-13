@@ -4,7 +4,7 @@
   position: sticky;
   top: 0;
   width: 100%;
-  background: radial-gradient(at 15% 100%, #ccc, #333 30%, black 60%);
+  background: radial-gradient(at 30% 100%, #999, #222 30%, black 60%);
   background-position-x: center;
   background-size: cover;
   color: var(--accent-dim);
@@ -201,8 +201,11 @@
       0px 0px 1px 1px rgba(0,0,0,.025),
       4px 12px 40px 6px rgba(0,0,0,.1);
     display: block;
+    font-size: 12px;
     font-weight: var(--font-weight-bold);
     list-style: none;
+    margin-top: 20px;
+    text-transform: uppercase;
 
     @mixin attention {
       visibility:visible;
@@ -220,7 +223,7 @@
     }
 
     li {
-      padding: var(--gap-sm) var(--gap);
+      padding: var(--gap-sm) 30px;
       border-top: 1px solid var(--accent-dim);
       border-bottom: 1px solid var(--accent-dim);
     }

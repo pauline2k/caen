@@ -76,20 +76,4 @@
     </div>
     {{/get}}
   {{/is}}
-
-  {{!-- Banner --}}
-  {{#if @custom.sidebar_banner}}
-    <div class="sidebar__section is-sticky">
-      <h5 class="sidebar__title">{{t "Advertisement"}}</h5>
-      {{> wave}}
-      <a href="{{@custom.sidebar_banner_link}}" target="_blank" class="sidebar-promo">
-        <img 
-          class="lazyload" 
-          alt="{{title}}" 
-          data-src="{{img_url @custom.sidebar_banner size="s"}}"
-          src="{{img_url @custom.sidebar_banner size="xxs"}}"
-        />
-      </a>
-    </div>
-  {{/if}}
 </aside>

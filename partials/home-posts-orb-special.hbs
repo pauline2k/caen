@@ -1,15 +1,20 @@
 <section class="home-posts orb-table" data-orb-table>
   {{!-- Tag filter pills (client-side filter of the already-rendered rows) --}}
   <nav class="orb-pills" aria-label="Filter posts by tag">
+    <button class="pill-lower is-active" type="button" data-tag="all" aria-pressed="true">
+      Archive
+    </button>
     <button class="pill-lower" type="button" data-tag="vibe-reports" aria-pressed="false">
       Vibe Reports
     </button>
     <button class="pill-lower" type="button" data-tag="reviews" aria-pressed="false">
       Reviews
     </button>
-    <button class="pill-lower is-active" type="button" data-tag="all" aria-pressed="true">
-      The complete ORB
+    <!--
+    <button class="pill-lower is-active" type="button" data-tag="six-senses" aria-pressed="true">
+      Six Senses
     </button>
+    -->
   </nav>
 
   <div class="orb-rows" role="table" aria-label="Articles">
@@ -42,10 +47,12 @@
           </div>
 
           <div class="c c--author" role="cell">
-            {{^has author='\O/'}}
+            {{^has author='\O/,Oakland Review of Books'}}
               <a href="{{primary_author.url}}">
                 {{primary_author.name}}
               </a>
+            {{ else }}
+              ORB
             {{/has}}
           </div>
         </article>
@@ -86,7 +93,7 @@
 
         setActivePill(wanted);
         if (wanted === "all") {
-          root.querySelector(".pill-lower-more-posts").href = "/vault";
+          root.querySelector(".pill-lower-more-posts").href = "/stacks";
         } else {
           root.querySelector(".pill-lower-more-posts").href = `/tag/${wanted}`;
         }
@@ -97,7 +104,7 @@
         btn.addEventListener("click", () => applyFilter(btn.dataset.tag));
       });
 
-      const initial = "vibe-reports";
+      const initial = "all";
       const hasInitialPill = pills.some(b => b.dataset.tag === initial);
       applyFilter(hasInitialPill ? initial : "all");
     })();

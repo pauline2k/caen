@@ -87,13 +87,8 @@
         "type": "boolean",
         "default": true
       },
-      "sidebar_banner": {
-        "type": "image",
-        "group": "homepage"
-      },
-      "sidebar_banner_link": {
+      "sidebar_banner_text": {
         "type": "text",
-        "default": "",
         "group": "homepage"
       },
       "enable_image_lightbox": {
