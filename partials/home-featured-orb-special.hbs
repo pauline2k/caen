@@ -1,4 +1,4 @@
-<div class="hero">
+<div class="hero" style="background-image: url({{@site.cover_image}})">
   <div class="hero-top">
     <div class="masthead" aria-hidden="true">
       <div class="orb">ORB</div>
@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <section class="section section-featured latest-post">
+  <section class="section section-featured">
   {{#get "posts" filter="featured:true+tag:hash-homepage-special-feature" include="authors,tags" limit="all"}}
     {{#foreach posts}}
       <div class="article article-special-feature">

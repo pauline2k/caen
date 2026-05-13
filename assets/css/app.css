@@ -74,7 +74,7 @@
 @import 'themes/_dark';
 
 /*========================================*/
-/* 9. ORB Special 
+/* 9. Index
 /*========================================*/
-@import 'orb/_orb';
+@import 'components/_index';
 

@@ -3,11 +3,6 @@
   margin-bottom: var(--gap-lg);
 }
 
-.latest-post {
-  margin-bottom: 0;
-  border-radius: var(--global-radius);
-}
-
 .post-card {
   position: relative;
   display: flex;

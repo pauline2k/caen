@@ -428,3 +428,40 @@
   height: 3px;
   z-index: 10;
 }
+
+.hamburger {
+  width: 44px;
+  height: 44px;
+  background: rgba(0,0,0,.06);
+  display: grid;
+  place-items: center;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  display: block;
+  position: relative;
+}
+
+.hamburger span::before,
+.hamburger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+}
+
+.hamburger span::before { top: -7px; }
+.hamburger span::after { top: 7px; }
+
+.header__title {
+  white-space: nowrap;
+}
+
+.gh-head-btn {
+  background-color: black !important;
+}

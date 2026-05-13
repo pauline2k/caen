@@ -49,3 +49,72 @@
 .stacks-header__title {
   margin-top: 20px;
 }
+
+.c {
+  min-width: 0;
+}
+
+.c--section {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.c--title {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  margin-right: 20px;
+  hyphens: auto;
+}
+
+.c--dek {
+  font-family: "Sorts Mill Goudy", Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.25;
+  color: color-mix(in srgb, var(--color-text) 78%, transparent);
+  margin-right: 20px;
+}
+
+.c--author {
+  font-family: "Sorts Mill Goudy", Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  font-style: italic;
+  color: color-mix(in srgb, var(--color-text) 75%, transparent);
+}
+
+.orb-rows {
+  border-top: 1px solid color-mix(in srgb, var(--color-text) 18%, transparent);
+}
+
+.orb-row {
+  display: grid;
+  grid-template-columns: 160px 0.5fr 0.5fr 150px;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+.orb-title-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  display: inline-block;
+
+  @mixin attention {
+    text-decoration: underline;
+  }
+}

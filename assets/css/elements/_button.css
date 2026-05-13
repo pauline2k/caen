@@ -168,3 +168,20 @@ button,
 }
 
 a.btn { -webkit-appearance: none; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.65);
+  background: rgba(0,0,0,.06);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .02em;
+  text-decoration: none;
+  width: 110px;
+}
