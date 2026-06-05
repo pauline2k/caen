@@ -198,7 +198,7 @@
   font-size: 0.9rem;
   margin-bottom: var(--gap);
   display: -webkit-box;
-  color: var(--color-text-acc-3);
+  color: var(--color-text-accent-3);
 }
 
 .kg-bookmark-thumbnail {
@@ -230,7 +230,7 @@
   flex-wrap: wrap;    
   font-size: 0.9rem;
   font-weight: var(--font-weight-medium);
-  color: var(--color-text-acc-2);
+  color: var(--color-text-accent-2);
 }
 
 .kg-bookmark-icon {

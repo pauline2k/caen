@@ -1,7 +1,3 @@
-:root {
-  --tile: 280px;
-}
-
 .section-featured {
   display: grid;
 
@@ -398,7 +394,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('./assets/images/syllabus.jpg');
+  background-image: url('../../assets/images/syllabus.jpg');
   background-size: cover;
   background-position: 50% 75%;
   filter: grayscale(100%);

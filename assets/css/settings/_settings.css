@@ -57,6 +57,9 @@
   --color-border: #eff1f3;
   --color-border-dark: #212437;
 
+  --tint: color-mix(in srgb, var(--accent) 8%, black);
+  --shadow: 0 10px 25px rgba(0,0,0,.12);
+
   /*--------------------------------------*/
   /* Typography
   /*--------------------------------------*/
@@ -117,6 +120,9 @@
   --container-md: calc(var(--breakpoint-md) + var(--gutter-width));
   --container-lg: calc(var(--breakpoint-lg) + var(--gutter-width));
   --container-xl: calc(var(--breakpoint-xl) + var(--gutter-width));
+
+  --sidebar-expanded: 200px;
+  --tile: 280px;
 }
 
 /*----------------------------------------*/

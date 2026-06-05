@@ -41,20 +41,20 @@
 }
 
 .bold {
-  font-weight: var(--font-weight-700);
+  font-weight: var(--font-weight-bold);
 }
 
 /* Font Family */
 .font-mono {
-  font-family: var(--font-mono);
+  font-family: var(--font-family-monospace);
 }
 
 .font-serif {
-  font-family: var(--font-serif);
+  font-family: var(--font-family-serif);
 }
 
 .font-sans {
-  font-family: var(--font-sans);
+  font-family: var(--font-family-sans-serif);
 }
 
 /* Font size */

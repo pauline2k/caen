@@ -74,7 +74,7 @@ input[type="checkbox"] {
   border-radius: 0.125rem;
 
   @mixin attention {
-    background-color: var(--color-bg-acc);
+    background-color: var(--color-bg-accent-1);
     box-shadow: 0 0 0 var(--border-width) var(--color-border);
   }
 

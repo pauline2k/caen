@@ -15,15 +15,15 @@
 }
 
 .text-acc-1 {
-  color: var(--color-text-acc-1);
+  color: var(--color-text-accent-1);
 }
 
 .text-acc-2 {
-  color: var(--color-text-acc-2);
+  color: var(--color-text-accent-2);
 }
 
 .text-acc-3 {
-  color: var(--color-text-acc-3);
+  color: var(--color-text-accent-3);
 }
 
 .bg-primary {
@@ -35,14 +35,14 @@
 }
 
 .bg-acc-1 {
-  background-color: var(--color-bg-acc-1);
+  background-color: var(--color-bg-accent-1);
 }
 
 .bg-acc-2 {
-  background-color: var(--color-bg-acc-2);
+  background-color: var(--color-bg-accent-2);
 }
 
 .bg-acc-3 {
-  background-color: var(--color-bg-acc-3);
+  background-color: var(--color-bg-accent-3);
 }
 
