@@ -48,9 +48,7 @@
 
           <div class="c c--author" role="cell">
             {{^has author='\O/,Oakland Review of Books'}}
-              <a href="{{primary_author.url}}">
-                {{primary_author.name}}
-              </a>
+              {{authors separator=", "}}
             {{ else }}
               ORB
             {{/has}}

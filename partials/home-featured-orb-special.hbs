@@ -53,9 +53,7 @@
               {{/if}}
             </a>
             {{^has author='\O/,Oakland Review of Books'}}
-              <a href="{{primary_author.url}}" title="{{primary_author.name}}">
-                <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
-              </a>
+              <p class="m-0 m-t-sm"><span class="article-author">{{authors separator=", "}}</span></p>
             {{/has}}
           </div>
         </div>
@@ -91,9 +89,7 @@
                 <h2 class="article-title">{{title}}</h2>
               </a>
               {{^has author='\O/,Oakland Review of Books'}}
-                <a href="{{primary_author.url}}" title="{{primary_author.name}}">
-                  <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
-                </a>
+                <p class="m-0 m-t-sm"><span class="article-author">{{authors separator=", "}}</span></p>
               {{/has}}
             </div>
             <div>
@@ -147,9 +143,7 @@
                 {{/if}}
               </a>
               {{^has author='\O/,Oakland Review of Books'}}
-                <a href="{{primary_author.url}}" title="{{primary_author.title}}">
-                  <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
-                </a>
+                <p class="m-0 m-t-sm"><span class="article-author">{{authors separator=", "}}</span></p>
               {{/has}}
             </div>
           </div>
@@ -179,9 +173,7 @@
               <h2 class="article-title">{{title}}</h2>
             </a>
             {{^has author='\O/,Oakland Review of Books'}}
-              <a href="{{primary_author.url}}" title="{{primary_author.name}}">            
-                <p class="m-0 m-t-sm"><span class="article-author">{{primary_author.name}}</span></p>
-              </a>
+              <p class="m-0 m-t-sm"><span class="article-author">{{authors separator=", "}}</span></p>
             {{/has}}
           </div>
         </div>
