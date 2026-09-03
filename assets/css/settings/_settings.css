@@ -128,6 +128,23 @@
 /*----------------------------------------*/
 /* Media Queries
 /*----------------------------------------*/
+/* --viewport-xs is a scoped-DOWN query for the very small end, below the
+   sm floor, where horizontal space runs out. Note it is max-width, unlike
+   the mobile-first min-width ladder below it. */
+@custom-media --viewport-xs only screen and (max-width: 26em);
+
+/* Registered so the viewport-driven announcement skew resolves as a real
+   number in every engine. Firefox discards the whole `transform` when
+   skewX() is handed a calc() that divides a length by a length through an
+   unregistered var(); registering the property makes var(--skew-t)
+   substitute its computed number instead of raw tokens. initial-value 1 =
+   full 15deg, so any resolution failure degrades to the parallelogram
+   rather than a flat rectangle. */
+@property --skew-t {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
 @custom-media --viewport-sm only screen and (min-width: 36em);
 @custom-media --viewport-md only screen and (min-width: 48em);
 @custom-media --viewport-lg only screen and (min-width: 62em);

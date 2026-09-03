@@ -17,6 +17,12 @@
       {{/get}}
     </div>
 
+    {{#if @custom.sidebar_banner_text}}
+    <div class="hero-top-announcement">
+      <span class="hero-top-announcement-inner">{{@custom.sidebar_banner_text}}</span>
+    </div>
+    {{/if}}
+
     <div class="hero-top-pill-stack">
       {{#if @member}}
         <a class="pill btn pill-subscribe" href="/#/portal/account">ACCOUNT</a>

@@ -462,6 +462,12 @@
   display: none;
 }
 
+/* Announcement banner is sidebar-only on wide viewports;
+   its narrow-viewport counterpart in .hero-top is hidden here. */
+.index-page .hero-top-announcement {
+  display: none;
+}
+
 .index-page .masthead {
   margin-top: clamp(18px, 2vw, 28px);
   margin-left: clamp(18px, 2vw, 32px);
@@ -643,6 +649,9 @@
     display: flex;
     width: 140px;
     height: 140px;
+    /* Never let the flex row squash the circle into an ellipse;
+       .hero-top-announcement absorbs the compression instead. */
+    flex-shrink: 0;
     margin: 15px;
     padding-top: 20px;
     background-color: var(--accent-dim);
@@ -658,6 +667,116 @@
 
   .index-page .calendar-link-sm:hover {
     background-color: var(--accent);
+  }
+
+  /* Narrow-viewport home of the announcement banner: sits centered in
+     .hero-top between .calendar-link-sm and .hero-top-pill-stack.
+     Parallelogram — top/bottom stay horizontal, left/right edges skewed.
+     The skew eases from 15deg down toward 0 (vertical edges) as the
+     viewport narrows from 640px to 380px, so the shape straightens out
+     when horizontal room gets tight. --skew-t runs 1 -> 0 over that range
+     and is shared with the inner span so its counter-skew always matches. */
+  .index-page .hero-top-announcement {
+    --skew-t: clamp(0, (100vw - 380px) / 260px, 1);
+    display: flex;
+    /* Sit at the top of .hero-top; the 20px top margin lines the top
+       edge up with the LOGIN button (.hero-top-pill-stack also has a
+       20px top margin), a touch below the calendar circle's 15px. */
+    align-self: flex-start;
+    /* Take the leftover space and be the element that shrinks;
+       min-width: 0 lets it go below its content width and wrap. */
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 45%;
+    margin: 20px 15px 15px;
+    padding: 12px 24px;
+    border: 1px solid white;
+    color: white;
+    font-family: "Libre Franklin", sans-serif;
+    font-size: 14px;
+    line-height: 1.4em;
+    text-align: center;
+    transform: skewX(calc(-15deg * var(--skew-t)));
+
+    /* Below ~480px, buy back a little room: trim the side margins/padding
+       and drop the text one step. */
+    @media (max-width: 480px) {
+      margin-left: 8px;
+      margin-right: 8px;
+      padding-left: 14px;
+      padding-right: 14px;
+      font-size: 13px;
+    }
+  }
+
+  /* Counter-skew so the text itself stays upright inside the skewed box. */
+  .index-page .hero-top-announcement-inner {
+    display: block;
+    transform: skewX(calc(15deg * var(--skew-t)));
+  }
+
+  /* Let the pill stack give up a little width too, so the announcement
+     isn't the only element absorbing the squeeze. Unpinning the pills
+     from their fixed 110px lets the stack shrink to the pills' own
+     min-content (~88px) and no further; align-items: stretch keeps the
+     two pills the same width. */
+  .index-page .hero-top-pill-stack .pill {
+    width: auto;
+    min-width: 88px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Below --viewport-xs (26em / 416px) the top row can't hold everything
+     at a usable size. Let .hero-top wrap and re-flow into two lines:
+       line 1 - the LOGIN/SUBSCRIBE pills, side by side
+       line 2 - the EVENTS CALENDAR circle and the announcement together */
+  @media (--viewport-xs) {
+    .index-page .hero-top {
+      flex-wrap: wrap;
+    }
+
+    /* Pills own the top line and lay out horizontally; halved vertical
+       margins pull the two lines closer together. */
+    .index-page .hero-top-pill-stack {
+      order: 0;
+      flex-basis: 100%;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* SUBSCRIBE is rotated 5deg; nudge it 3px down so it reads level
+       with LOGIN in the horizontal row. */
+    .index-page .hero-top-pill-stack .pill-subscribe {
+      transform: translateY(3px) rotate(5deg);
+    }
+
+    /* Circle drops to the second line, sharing it with the announcement;
+       no top margin so it sits tight under the pills. */
+    .index-page .calendar-link-sm {
+      order: 1;
+      margin-top: 0;
+    }
+
+    .index-page .hero-top-announcement {
+      order: 2;
+      /* flex-basis 0 (not auto) so it sits beside the circle on the
+         second line and grows into the leftover width instead of
+         demanding its content width and wrapping below. */
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: none;
+      /* vertically center against the 140px circle */
+      align-self: center;
+      /* Own skew easing for xs mode: 15deg at 416px down to an 8deg
+         floor at 330px and below (--skew-t is the fraction of 15deg). */
+      --skew-t: calc((8 + 7 * clamp(0, (100vw - 330px) / 86px, 1)) / 15);
+      margin: 8px 15px 15px;
+      padding: 12px 16px;
+      font-size: 13px;
+    }
   }
 }
 
