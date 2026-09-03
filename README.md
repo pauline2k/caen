@@ -1,6 +1,6 @@
-# auden
+# caen
 
-A Ghost CMS theme.
+A Ghost CMS theme. Originally adapted from [auden.brightthemes.com](Auden) by Bright Themes.
 
 ## Requirements
 
@@ -28,10 +28,3 @@ This task compresses the theme files into theme_name.zip in the 'dist' folder.
 4. The deafault task `gulp` or `gulp dev`.
 Runs a series of tasks necessary for local development/customizing.
 
-## Demo
-
-[auden.brightthemes.com](https://auden.brightthemes.com)
-
-## Documentation
-
-[Online Doc](https://brightthemes.com/docs/auden/)

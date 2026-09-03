@@ -1,15 +1,15 @@
 {
-  "name": "isherwood",
-  "description": "Isherwood Theme for ORB",
+  "name": "caen",
+  "description": "Caen Theme for ORB",
   "demo": "",
   "version": "1.0.0",
   "engines": {
     "ghost": ">=5.0.0"
   },
   "author": {
-    "name": "Bright Themes",
-    "email": "hi@brightthemes.com",
-    "url": "https://brightthemes.com"
+    "name": "Pauline Kerschen",
+    "email": "k@paulinekerschen.com",
+    "url": "https://paulinekerschen.com"
   },
   "keywords": [
     "ghost",
