@@ -455,6 +455,14 @@
   font-family: 'Crimson Text', serif;
   font-size: 20px;
   line-height: 1.5em;
+  /* Override the global `p` bottom margin (var(--gap-lg) = 2em = 40px here) */
+  margin-bottom: 25px;
+}
+
+/* Tighten the space under figures/cards in post content
+   (global .kg-card uses margin-bottom: var(--gap-lg)) */
+.post__content .kg-card {
+  margin-bottom: 25px;
 }
 
 .posts {
