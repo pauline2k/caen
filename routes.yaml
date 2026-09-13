@@ -6,6 +6,10 @@ routes:
   /recommendations/:
     template: recommend
     # data: page.recommendations # When active data will be taken from the  "/recommendations/" page
+  /stacks/:
+    controller: channel
+    template: vault
+    filter: featured:false+tag:-calendar
 
 collections:
   /:
