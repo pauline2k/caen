@@ -51,13 +51,36 @@
 /*============================================================================*/
 /* Image & Gallery card */
 /*============================================================================*/
-.kg-image-card, .kg-gallery-card { 
+.kg-image-card, .kg-gallery-card {
   max-width: 100vw;
 
   @media (--viewport-sm) {
     max-width: 100%;
     border-radius: var(--global-radius);
   }
+}
+
+/* Shrink regular (non-wide/full) image cards to the rendered image width so
+   the figcaption's box aligns with the visible image edges instead of
+   stretching to the full content column.
+   !important is required here to beat `.post__content .kg-card { width:
+   auto !important }` and `.post__content > * { min-width: 100% }` in
+   _post.css, which otherwise force every card to the column's full width. */
+.kg-image-card:not(.kg-width-wide):not(.kg-width-full) {
+  width: fit-content !important;
+  min-width: 0 !important;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* figcaption has horizontal padding by default (see elements/_misc.css);
+   drop it here so the caption text lines up with the image's edges now
+   that the figure is shrink-wrapped to the image width above. Vertical
+   padding is left untouched. */
+.kg-image-card figcaption {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .kg-image-card,
