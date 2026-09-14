@@ -589,3 +589,61 @@ blockquote.kg-blockquote-alt {
 /* Fix unwanted margins in kg card texts wrapped in <p> */
 /* -------------------------------------------------------------------------- */
 .post .kg-card *:where(h1,h2,h3,h4,h5,h6) p:not([class]) { margin: 0; font-size: inherit; }
+
+/* -------------------------------------------------------------------------- */
+/* Lightbox close button (see assets/js/script.js) */
+/* -------------------------------------------------------------------------- */
+/* fslightbox's own toolbar (fullscreen + close, top-right of the viewport)
+   is effectively invisible at wider viewports anyway (its icon collapses
+   to width:0 there -- see .orb-lightbox-close's click handler, which
+   still delegates to the native close button under the hood even though
+   it's hidden here). We supply our own close control instead, so hide
+   the native toolbar outright. !important because fslightbox injects its
+   own <style> at runtime, after this stylesheet, at equal specificity. */
+.fslightbox-toolbar {
+  display: none !important;
+}
+
+.orb-lightbox-close {
+  /* the theme's global `button { -webkit-appearance: button; padding: ... }`
+     reset otherwise fights our sizing here via native button chrome. */
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
+  text-transform: none;
+
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-dark);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .45);
+}
+
+/* On mobile-sized viewports the image commonly spans the full viewport
+   width, so overlapping the top-right corner (as above) pushes half the
+   button off-screen. Sit it just inside the image's corner instead.
+   Reuses the site's existing ~480px breakpoint (see _footer.css). */
+@media (max-width: 480px) {
+  .orb-lightbox-close {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+.orb-lightbox-close:hover,
+.orb-lightbox-close:focus {
+  background-color: var(--color-primary);
+  outline: none;
+}

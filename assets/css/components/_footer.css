@@ -10,6 +10,69 @@
     background-color: var(--color-dark);
   }
 
+  /* Three equal columns above the breakpoint where the homepage sidebar
+     disappears (see .sidebar { display: none } in _index.css, which
+     fires at max-width: 899px); below it, Social drops under Oakland
+     Quote Generator so the two share one 50%-wide column alongside the
+     site description. */
+  &__columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "quote social description";
+    gap: var(--gap-lg) calc(var(--gutter-width) * 2);
+  }
+
+  &__col--quote { grid-area: quote; }
+  &__col--social { grid-area: social; }
+  &__col--description { grid-area: description; }
+
+  /* The Social column's content (a heading plus two short links) is
+     narrow and sparse, so centering the whole column's text looks odd
+     stretched across it. Shrink-wrap an inner block to its own content
+     and center that block instead, keeping the text itself left-aligned. */
+  &__col--social {
+    text-align: center;
+  }
+
+  &__col-inner {
+    display: inline-block;
+    text-align: left;
+  }
+
+  @media (max-width: 899px) {
+    &__columns {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-areas:
+        "quote description"
+        "social description";
+    }
+
+    /* Below Oakland Quote Generator, Social reads as a continuation of
+       that column rather than its own centered block, so drop the
+       centering and let it sit flush left like Quote Generator above it.
+       (This must come after the unconditional &__col--social rule above
+       -- equal specificity, so source order decides, and this needs to
+       win regardless of viewport width when the media query matches.) */
+    &__col--social {
+      text-align: left;
+    }
+  }
+
+  /* Reusing the existing ~480px breakpoint (see the hero announcement
+     banner rule in _index.css) rather than introducing a new one. Below
+     it, the two-column layout above is too cramped, so collapse to a
+     single column. (Must come after the max-width: 899px block above
+     for the same source-order reason.) */
+  @media (max-width: 480px) {
+    &__columns {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "quote"
+        "social"
+        "description";
+    }
+  }
+
   h5 { 
     font-size: calc(1.2 * var(--font-size-base)); 
   }
@@ -137,6 +200,28 @@
   &__description a {
     text-decoration: underline;
     color: color-mix(in srgb, var(--accent) 20%, white);
+  }
+
+  &__collage-credit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-sm);
+  }
+
+  &__collage-credit-link {
+    display: block;
+    max-width: 100%;
+  }
+
+  &__collage-credit-img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 250px;
+    margin: 0;
+    border-radius: var(--global-radius);
   }
 
   a:hover,

@@ -1,8 +1,8 @@
 {{!-- Site footer --}}
 <footer class="footer">
   <div class="footer__top">
-    <div class="row">
-      <div class="col-xs-12 col-md-6 m-b-md">
+    <div class="footer__columns">
+      <div class="footer__col footer__col--quote">
         <h5 class="m-b-sm">{{t "Oakland Quote Generator"}}</h5>
         <div id="oakland-quote" class="footer__oakland-quote-body">"An Oakland Quote!"</div>
         <div>
@@ -13,19 +13,26 @@
         </div>
         <btn class="pill footer__oakland-quote-pill" onClick="fetchOaklandQuote()">Another One!</btn>
       </div>
-      <div class="col-xs-12 col-md-2 m-b-md">
-        <h5 class="m-b-sm">{{t "Social"}}</h5>
-        <div>
-          <a href="https://bsky.app/profile/oaklandreviewofbooks.org">Bluesky</a>
-        </div>
-        <div>
-          <a href="https://www.instagram.com/oaklandreviewofbooks">Instagram </a>
+      <div class="footer__col footer__col--social">
+        <div class="footer__col-inner">
+          <h5 class="m-b-sm">{{t "Social"}}</h5>
+          <div>
+            <a href="https://bsky.app/profile/oaklandreviewofbooks.org">Bluesky</a>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/oaklandreviewofbooks">Instagram </a>
+          </div>
         </div>
       </div>
-      <div class="col-xs-12 col-md-4 footer__description">
+      <div class="footer__col footer__col--description footer__description">
         <h5 class="m-b-sm">{{@site.title}}</h5>
         <div class="m-b">Design consultant: Justin Carder</div>
-        <div class="m-b">Collages provided by Gregory Hom, whose work can be seen <a href="https://www.tumblr.com/theoretical-mutant-4734">here</a> or purchased at Spectator Books.</a></div>
+        <div class="m-b footer__collage-credit">
+          <a class="footer__collage-credit-link" data-no-swup data-fslightbox href="{{@site.cover_image}}" aria-label="Click for Lightbox">
+            <img class="footer__collage-credit-img" src="{{@site.cover_image}}" alt="A collage by Gregory Hom" loading="lazy">
+          </a>
+          <span>Collages provided by Gregory Hom, whose work can be seen <a href="https://www.tumblr.com/theoretical-mutant-4734">here</a> or purchased at Spectator Books.</a></span>
+        </div>
         <div id="footer-subscribe">{{@site.description}}</div>
       </div>
     </div>

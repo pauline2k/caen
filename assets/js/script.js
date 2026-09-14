@@ -493,6 +493,49 @@ var callback = function(){
   // =============
   refreshFsLightbox();
 
+  // fslightbox has its own close control in a small toolbar fixed to the
+  // viewport's corner, but it's easy to miss. Add a second, explicit close
+  // button positioned right next to the enlarged image/video itself, which
+  // just delegates to fslightbox's own close button so its normal close
+  // behavior (fade-out, cleanup, etc.) is unaffected.
+  (function () {
+    var closeBtnClass = 'orb-lightbox-close';
+
+    function addLightboxCloseButton() {
+      var container = document.querySelector('.fslightbox-container');
+      if (!container) return;
+
+      var media = container.querySelector('img.fslightbox-opacity-1, video.fslightbox-opacity-1') ||
+        container.querySelector('img, video');
+      if (!media) return;
+
+      var wrapper = media.parentElement;
+      if (!wrapper || wrapper.querySelector('.' + closeBtnClass)) return;
+
+      if (getComputedStyle(wrapper).position === 'static') {
+        wrapper.style.position = 'relative';
+      }
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = closeBtnClass;
+      btn.setAttribute('aria-label', 'Close');
+      btn.innerHTML = '&times;';
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var nativeCloseBtn = document.querySelector('.fslightbox-toolbar-button[title="Close"]');
+        if (nativeCloseBtn) nativeCloseBtn.click();
+      });
+
+      wrapper.appendChild(btn);
+    }
+
+    new MutationObserver(addLightboxCloseButton).observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  })();
+
   // ==================
   // Social Share Logic
   // ==================
