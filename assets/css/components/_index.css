@@ -124,6 +124,11 @@
     drop-shadow(5px 10px 10px rgba(0,0,0,.9));
 }
 
+/* Cancel the generic article-inner:hover so that
+   only a single hover effect is in play on special features. */
+.article-special-feature .article-inner:hover {
+  filter: none !important;
+}
 
 .article-wide-1 .article-inner-wide {
   background-image: url("../../assets/images/article-wide-1.svg");
