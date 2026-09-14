@@ -446,9 +446,24 @@
 }
 
 .index-page .hero {
-  height: 100%;
-  background-size: cover;
-  background-position: 55% 45%;
+  background-size: contain;
+  /* Contain fits the image's full width without cropping, which usually
+     leaves it shorter than the box; tile it downward instead of
+     stretching it or leaving blank space below. */
+  background-repeat: repeat-y;
+}
+
+/* Below 640px, stop shrinking the collage to fit — pin it at the size it
+   had at 640px and anchor left, so narrower viewports just crop off the
+   right side of the image instead of scaling it down further. */
+@media (max-width: 640px) {
+  .index-page .hero {
+    background-size: 640px auto;
+    /* "top" (not the default center) pins the image to the container's
+       top edge, so it doesn't drift as .hero's height changes with the
+       viewport (content reflow, min-height breakpoints, etc). */
+    background-position: left top;
+  }
 }
 
 .index-page .hero-top {
@@ -849,7 +864,7 @@
 }
 
 @media (max-width: 640px) {
-  .hero { min-height: 92vh; background-position: 60% 45%; }
+  .hero { min-height: 92vh; }
   .c1 { top: 16%; left: 4%; width: 92%; }
   .c2 { top: 34%; left: 8%; width: 84%; }
   .c3 { top: 52%; left: 4%; width: 92%; }
