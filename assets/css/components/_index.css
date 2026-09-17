@@ -478,6 +478,12 @@
   gap: 10px;
 }
 
+/* LOGIN sits directly on the background collage like the announcement
+   banner; give it the same semitransparent black fill for legibility. */
+.index-page .hero-top-pill-stack .pill:not(.pill-subscribe) {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .index-page .calendar-link-sm {
   display: none;
 }
