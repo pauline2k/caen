@@ -524,9 +524,9 @@
   border-radius: 999px;
   background: radial-gradient(
     ellipse at center,
-    var(--accent) 0%,
-    color-mix(in srgb, var(--accent) 85%, transparent) 30%,
-    color-mix(in srgb, var(--accent) 30%, transparent) 70%
+    var(--color-secondary) 0%,
+    color-mix(in srgb, var(--color-secondary) 85%, transparent) 30%,
+    color-mix(in srgb, var(--color-secondary) 30%, transparent) 70%
   );
   filter: blur(18px);
   z-index: -1;
