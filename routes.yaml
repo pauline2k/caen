@@ -9,12 +9,19 @@ routes:
   /stacks/:
     controller: channel
     template: vault
-    filter: featured:false+tag:-calendar
+    filter: featured:false+tag:-calendar+tag:-voting-guide-2026
 
 collections:
+  # Voting guide posts live under their own collection (and page) so they're
+  # kept off the homepage; the template pulls the cutouts itself via {{#get}}.
+  /voting-guide-2026/:
+    permalink: /voting-guide-2026/{slug}/
+    template: voting-guide-2026
+    filter: tag:voting-guide-2026
   /:
     permalink: /{slug}/
     template: index
+    filter: tag:-voting-guide-2026
 
 taxonomies:
   tag: /tag/{slug}/

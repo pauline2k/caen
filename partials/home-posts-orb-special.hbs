@@ -16,7 +16,7 @@
   </nav>
 
   <div class="orb-rows" role="table" aria-label="Articles">
-    {{#get "posts" filter="featured:false+tag:-calendar+tag:-hash-no-homepage" include="authors,tags" limit="50"}}
+    {{#get "posts" filter="featured:false+tag:-calendar+tag:-hash-no-homepage+tag:-voting-guide-2026" include="authors,tags" limit="50"}}
       {{#foreach posts}}
         <article
           class="orb-row"

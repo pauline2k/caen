@@ -90,6 +90,7 @@
   {{#if posts}}
   <div class="orb-rows" role="table" aria-label="Articles">
     {{#foreach posts}}
+    {{^has tag="Voting Guide 2026"}}
       {{!-- Collect tag slugs to filter on --}}
       <article
         class="orb-row"
@@ -117,6 +118,7 @@
           {{/if}}
         </div>
       </article>
+    {{/has}}
     {{/foreach}}
   {{/if}}
 </div>

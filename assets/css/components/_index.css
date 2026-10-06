@@ -915,3 +915,42 @@
   border-color: var(--color-text);
 }
 
+
+/* ---------------------------------------------------------------------
+   Voting guide page (/voting-guide-2026/)
+   Reuses the homepage hero + cutout grid; .index-page's sidebar grid is
+   flattened to a single full-width column, and the masthead (hidden on
+   narrow viewports on the homepage) becomes a large page title. */
+.index-page.voting-guide-page {
+  display: block;
+}
+
+.voting-guide-page .voting-guide-featured {
+  width: 100%;
+}
+
+/* Halftone print is a portrait photo: fill the hero rather than tiling. */
+.index-page.voting-guide-page .hero {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.index-page.voting-guide-page .masthead {
+  display: flex;
+  margin-bottom: clamp(8px, 2vw, 24px);
+  pointer-events: auto;
+}
+
+.index-page.voting-guide-page .orb {
+  margin: 0;
+  font-size: clamp(40px, 10vw, 150px);
+  overflow-wrap: normal;
+  line-height: .95;
+  letter-spacing: -0.07em;
+}
+
+.index-page.voting-guide-page .orb::before {
+  height: 80%;
+}

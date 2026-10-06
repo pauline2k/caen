@@ -40,6 +40,7 @@
         <section class="section all-posts">
           <div class="orb-rows" role="table" aria-label="Articles">
               {{#foreach posts}}
+              {{^has tag="Voting Guide 2026"}}
                 {{!-- Collect tag slugs to filter on --}}
                 <article
                   class="orb-row"
@@ -77,6 +78,7 @@
                     {{/has}}
                   </div>
                 </article>
+              {{/has}}
               {{/foreach}}
           </div>
         </section>
