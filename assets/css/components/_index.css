@@ -954,3 +954,12 @@
 .index-page.voting-guide-page .orb::before {
   height: 80%;
 }
+
+/* "ORB" keeps the full masthead size on its own line; the rest of the
+   title drops a step so it fits on narrow screens. */
+.index-page.voting-guide-page .orb-subtitle {
+  display: block;
+  font-size: clamp(0.55em, 7vw, 0.6em);
+  line-height: 1.1;
+  word-spacing: 0.25em;
+}
